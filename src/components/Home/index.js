@@ -7,7 +7,8 @@ import step2 from "../../assets/images/step-icon-02.png"
 import step3 from "../../assets/images/step-icon-03.png"
 import arrow from "../../assets/images/arrow.png"
 
-const QUESTIONS_PER_PAGE = 8
+const QUESTIONS_PER_PAGE = 8;
+const TOTAL_QUESTIONS = QUIZ.length;
 const STEP_DATA = [
   {
     icon: step1,
@@ -30,14 +31,14 @@ const STEP_DATA = [
 ]
 function Home() {
   const [quiz, setQuiz] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const [points, setPoints]=useState({
-    PH:0,
-    EN:0,
-    EM:0,
-    KI:0,
-    AU:0,
-    VI:0
+  const [currentPage, setCurrentPage] = useState(0)
+  const [points, setPoints] = useState({
+    PH: 0,
+    EN: 0,
+    EM: 0,
+    KI: 0,
+    AU: 0,
+    VI: 0
   })
 
   useEffect(() => {
@@ -46,24 +47,27 @@ function Home() {
 
   const handleNext = () => {
     // 0-7, 8-15, 16-23
-    let quizData = [...QUIZ]
-    let start = QUESTIONS_PER_PAGE * (currentPage - 1)
-    let end = QUESTIONS_PER_PAGE * currentPage - 1
-
-    quizData = quizData.slice(start, end + 1)
+    if (currentPage * QUESTIONS_PER_PAGE <= TOTAL_QUESTIONS) {
+      let quizData = [...QUIZ]
+      let start = QUESTIONS_PER_PAGE * currentPage
+      let end = (QUESTIONS_PER_PAGE * (currentPage + 1) - 1)
+      quizData = quizData.slice(start, end + 1)
       setQuiz(quizData)
       setCurrentPage(currentPage + 1)
+    } else {
+      alert("Quiz Done")
+    }
   }
 
   const renderQuestions = () => {
     return quiz.map((questions, key) => {
-      let questionNumber = (currentPage-key)*(key+1)
-      return <QuestionComponent 
-      key1={key} 
-      data={questions} 
-      questionNumber={questionNumber}
-      points={points}
-      setPoints={setPoints}
+      let questionNumber = (((currentPage - 1) * QUESTIONS_PER_PAGE + key) + 1)
+      return <QuestionComponent
+        key1={key}
+        data={questions}
+        questionNumber={questionNumber}
+        points={points}
+        setPoints={setPoints}
       />
     })
   }
@@ -88,7 +92,7 @@ function Home() {
         {renderQuestions()}
         <button onClick={handleNext} className="next-button">
           <span>Next</span>
-          <img src={arrow} alt="" />  
+          <img src={arrow} alt="" />
         </button>
       </div>
     </div>
