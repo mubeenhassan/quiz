@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
-
 const QuestionComponent = (props) => {
-  const { data, questionNumber, points, setPoints } = props
+  const { data, questionNumber, points, setPoints, key1 } = props
 
   const [questionData, setQuestionData] = useState(data)
   const [isSelected, setIsSelected] = useState("")
@@ -14,7 +13,7 @@ const QuestionComponent = (props) => {
   const { question, options, question_type } = questionData
 
   const handleChange = (event, item) => {
-    // let data = { ...points }
+    console.log(event.target)
     let data = reducePreviousCredit()
     item.credit.map((value, key) => {
       data = {
@@ -73,14 +72,15 @@ const QuestionComponent = (props) => {
   const renderRadioButtons = () => {
     return options.map((item, key) => {
       return (
-        <div key={key}>
+        <div key={key} className="option">
           <input
             type="radio"
+            id={"radio"+key+key1}
             value={item.name}
             onChange={(event) => handleChange(event, item)}
             checked={isSelected === item.name}
           />
-          <label>{item.name}</label>
+          <label for={"radio"+key+key1}>{item.name}</label>
         </div>
       )
     })
@@ -88,14 +88,15 @@ const QuestionComponent = (props) => {
   const renderCheckBoxes = () => {
     return options.map((item, key) => {
       return (
-        <div key={key}>
+        <div key={key} className="option multiple">
           <input
             type="checkbox"
+            id={"checkbox"+key+key1}
             value={item.name}
             onChange={handleCheckBoxes}
             checked={checkIfChecked(item.name)}
           />
-          <label>{item.name}</label>
+          <label for={"checkbox"+key+key1}>{item.name}</label>
         </div>
       )
     })
@@ -112,42 +113,9 @@ const QuestionComponent = (props) => {
         {question_type === "multiple"
           ? renderCheckBoxes()
           : renderRadioButtons()}
-        {/* {questions.options.map((question, key1) => (
-         <div
-           className={`option ${
-             questions.data_type == "multiple" ? "multiple" : ""
-           }`}
-         >
-           {questions.data_type == "multiple" ? (
-             <input type="checkbox" id={`option-${key1}-${key}`} name={key} />
-           ) : (
-             <input type="radio" id={`option-${key1}-${key}`} name={key} />
-           )}
-           <label for={`option-${key1}-${key}`}>{question.name}</label>
-         </div>
-       ))} */}
       </div>
 
-      {/* <p className="question-text">
-       <span style={{ fontWeight: "bold" }}>Q No.{key + 1}. </span>
-       {questions.question}
-     </p>
-     <div className="option-container">
-       {questions.options.map((question, key1) => (
-         <div
-           className={`option ${
-             questions.data_type == "multiple" ? "multiple" : ""
-           }`}
-         >
-           {questions.data_type == "multiple" ? (
-             <input type="checkbox" id={`option-${key1}-${key}`} name={key} />
-           ) : (
-             <input type="radio" id={`option-${key1}-${key}`} name={key} />
-           )}
-           <label for={`option-${key1}-${key}`}>{question.name}</label>
-         </div>
-       ))}
-     </div> */}
+      
     </div>
   )
 }

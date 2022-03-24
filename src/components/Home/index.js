@@ -5,6 +5,8 @@ import QuestionComponent from "./QuestionComponent"
 import step1 from "../../assets/images/step-icon-01.png"
 import step2 from "../../assets/images/step-icon-02.png"
 import step3 from "../../assets/images/step-icon-03.png"
+import arrow from "../../assets/images/arrow.png"
+
 const QUESTIONS_PER_PAGE = 8
 const STEP_DATA = [
   {
@@ -55,9 +57,9 @@ function Home() {
 
   const renderQuestions = () => {
     return quiz.map((questions, key) => {
-      let questionNumber = (currentPage-1)*(key+1)
+      let questionNumber = (currentPage-key)*(key+1)
       return <QuestionComponent 
-      key={key} 
+      key1={key} 
       data={questions} 
       questionNumber={questionNumber}
       points={points}
@@ -83,9 +85,11 @@ function Home() {
         ))}
       </div>
       <div className="question-container">
-        {/* {console.log(renderQuiz())} */}
         {renderQuestions()}
-        <button onClick={handleNext}>next</button>
+        <button onClick={handleNext} className="next-button">
+          <span>Next</span>
+          <img src={arrow} alt="" />  
+        </button>
       </div>
     </div>
   )
