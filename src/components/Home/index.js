@@ -9,6 +9,7 @@ import arrow from "../../assets/images/arrow.png"
 
 const QUESTIONS_PER_PAGE = 8;
 const TOTAL_QUESTIONS = QUIZ.length;
+const TOTAL_PAGES = TOTAL_QUESTIONS / QUESTIONS_PER_PAGE
 const STEP_DATA = [
   {
     icon: step1,
@@ -46,24 +47,27 @@ function Home() {
   }, [])
 
   const handleNext = () => {
-    // 0-7, 8-15, 16-23
-    if (currentPage * QUESTIONS_PER_PAGE <= TOTAL_QUESTIONS) {
+    // 0-7, 8-15, 16-23, 24-31, 32-30, 40-47
+    if (currentPage <= TOTAL_PAGES) {
       let quizData = [...QUIZ]
       let start = QUESTIONS_PER_PAGE * currentPage
       let end = (QUESTIONS_PER_PAGE * (currentPage + 1) - 1)
       quizData = quizData.slice(start, end + 1)
       setQuiz(quizData)
       setCurrentPage(currentPage + 1)
-    } else {
-      alert("Quiz Done")
     }
+  }
+
+  const handleFinish=()=>{
+    alert("Quiz Done")
   }
 
   const renderQuestions = () => {
     return quiz.map((questions, key) => {
       let questionNumber = (((currentPage - 1) * QUESTIONS_PER_PAGE + key) + 1)
       return <QuestionComponent
-        key1={key}
+        key={key}
+        questionID={key}
         data={questions}
         questionNumber={questionNumber}
         points={points}
@@ -90,10 +94,17 @@ function Home() {
       </div>
       <div className="question-container">
         {renderQuestions()}
-        <button onClick={handleNext} className="next-button">
+        {currentPage <= TOTAL_PAGES ? (
+          <button onClick={handleNext} className="next-button">
           <span>Next</span>
           <img src={arrow} alt="" />
         </button>
+        ):(
+          <button onClick={handleFinish} className="next-button">
+          <span>Finish Quiz</span>
+          <img src={arrow} alt="" />
+        </button>
+        )}        
       </div>
     </div>
   )
