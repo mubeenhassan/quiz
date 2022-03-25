@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { QUIZ } from '../DataFolder/QuizData'
 import QuestionComponent from './QuestionComponent'
+import Result from '../Result'
 import ProgressBar from '../Reused/ProgressBar'
 
 import step1 from '../../assets/images/step-icon-01.png'
@@ -35,6 +35,8 @@ const STEP_DATA = [
 function Home() {
   const [quiz, setQuiz] = useState([])
   const [currentPage, setCurrentPage] = useState(0)
+  const [progress, setProgress] = useState(0)
+  const [isQuizFinished, setIsQuizFinished] = useState(false)
   const [points, setPoints] = useState({
     PH: 0,
     EN: 0,
@@ -57,7 +59,16 @@ function Home() {
       quizData = quizData.slice(start, end + 1)
       setQuiz(quizData)
       setCurrentPage(currentPage + 1)
+      setProgress(
+        parseInt((QUESTIONS_PER_PAGE / TOTAL_QUESTIONS) * 100 * currentPage)
+      )
     }
+    window.scrollTo(0, 0)
+  }
+
+  const handleFinish = () => {
+    setProgress(100)
+    setIsQuizFinished(true)
   }
 
   const renderQuestions = () => {
@@ -77,44 +88,45 @@ function Home() {
   }
   return (
     <div className='main-container'>
-      <ProgressBar
-        bgcolor={'#e8c0aa'}
-        completed={parseInt(
-          (QUESTIONS_PER_PAGE / TOTAL_QUESTIONS) * 100 * (currentPage-1)
-        )}
-      />
-      <div className='heading-container'>
-        <h1>Free Trauma Bond Test</h1>
-        <p>Find out which type of trauma bond you have and how to break it</p>
-      </div>
-      <div className='step-container'>
-        {STEP_DATA.map((item, key) => (
-          <div className='step-card' key={key}>
-            <div className='step-icon'>
-              <img src={item.icon} />
-            </div>
-            <h2>{item.heading}</h2>
-            <p>{item.description}</p>
-          </div>
-        ))}
-      </div>
-      <div className='question-container'>
-        {renderQuestions()}
-        {currentPage <= TOTAL_PAGES ? (
-          <button onClick={handleNext} className='next-button'>
-            <span>Next</span>
-            <img src={arrow} alt='' />
-          </button>
-        ) : (
-          <Link to='/result'>
-            <div className='next-button'>
-              <span>Finish Quiz</span>
+      <ProgressBar bgcolor={'#e8c0aa'} completed={progress} />
 
-              <img src={arrow} alt='' />
-            </div>
-          </Link>
-        )}
-      </div>
+      {isQuizFinished ? (
+        <Result points={points} />
+      ) : (
+        <React.Fragment>
+          <div className='heading-container'>
+            <h1>Free Trauma Bond Test</h1>
+            <p>
+              Find out which type of trauma bond you have and how to break it
+            </p>
+          </div>
+          <div className='step-container'>
+            {STEP_DATA.map((item, key) => (
+              <div className='step-card' key={key}>
+                <div className='step-icon'>
+                  <img src={item.icon} />
+                </div>
+                <h2>{item.heading}</h2>
+                <p>{item.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className='question-container'>
+            {renderQuestions()}
+            {currentPage <= TOTAL_PAGES ? (
+              <button onClick={handleNext} className='next-button'>
+                <span>Next</span>
+                <img src={arrow} alt='' />
+              </button>
+            ) : (
+              <button onClick={handleFinish} className='next-button'>
+                <span>Finish Quiz</span>
+                <img src={arrow} alt='' />
+              </button>
+            )}
+          </div>
+        </React.Fragment>
+      )}
     </div>
   )
 }
