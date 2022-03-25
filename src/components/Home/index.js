@@ -55,9 +55,11 @@ function Home() {
       quizData = quizData.slice(start, end + 1)
       setQuiz(quizData)
       setCurrentPage(currentPage + 1)
-    } else {
-      alert("Quiz Done")
     }
+  }
+
+  const handleFinish=()=>{
+    alert("Quiz Done")
   }
 
   const renderQuestions = () => {
@@ -92,10 +94,17 @@ function Home() {
       </div>
       <div className="question-container">
         {renderQuestions()}
-        <button onClick={handleNext} className="next-button">
+        {currentPage <= TOTAL_PAGES ? (
+          <button onClick={handleNext} className="next-button">
           <span>Next</span>
           <img src={arrow} alt="" />
         </button>
+        ):(
+          <button onClick={handleFinish} className="next-button">
+          <span>Finish Quiz</span>
+          <img src={arrow} alt="" />
+        </button>
+        )}        
       </div>
     </div>
   )

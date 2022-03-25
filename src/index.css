@@ -173,6 +173,7 @@ body {
 .multiple label::before {
   margin-right: 12px;
   margin-bottom: 0 !important;
+  border-radius: 0 !important;
 }
 .multiple label::after {
   left: 10px;
