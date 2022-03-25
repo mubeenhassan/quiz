@@ -314,15 +314,15 @@ export const QUIZ = [
       },
       {
         name: "Happy",
-        credit: 0,
+        credit: [],
       },
       {
         name: "Content",
-        credit: 0,
+        credit: [],
       },
       {
         name: "Empowered",
-        credit: 0,
+        credit: [],
       },
       {
         name: "Confused",
@@ -389,7 +389,7 @@ export const QUIZ = [
       },
       {
         name: "None",
-        credit: 0,
+        credit: [],
       },
     ],
   },

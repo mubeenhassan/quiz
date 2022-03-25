@@ -13,36 +13,26 @@ const QuestionComponent = (props) => {
   const { question, options, question_type } = questionData
 
   const handleChange = (event, item) => {
-    let data = reducePreviousCredit()
-    item.credit.map((value, key) => {
-      data = {
-        ...data,
-        [value.to]: points[value.to] + value.points,
-      }
+    let newPoints = reducePreviousValue(item)
+    item.credit.map((i) => {
+      newPoints[i.to] = newPoints[i.to] + i.points
     })
+    setPoints(newPoints)
     setIsSelected(event.target.value)
-    setPoints(data)
   }
 
-  const reducePreviousCredit = () => {
-    let reducedData = { ...points }
-    options.map((item) => {
-      if (isSelected === item.name) {
-        reducedData = reduceCredit(item)
-      }
-    })
-    return reducedData
-  }
-
-  const reduceCredit = (item) => {
-    let data = { ...points }
-    item.credit.map((value) => {
-      data = {
-        ...data,
-        [value.to]: points[value.to] - value.points,
-      }
-    })
-    return data
+  const reducePreviousValue = (data) => {
+    let newPoints = { ...points }
+    if (isSelected.length > 0) {
+      options.map((item) => {
+        if (isSelected === item.name) {
+          item.credit.map((i) => {
+            newPoints[i.to] = newPoints[i.to] - i.points
+          })
+        }
+      })
+    }
+    return newPoints
   }
 
   const checkIfChecked = (value) => {
@@ -132,7 +122,6 @@ const QuestionComponent = (props) => {
         <span style={{ fontWeight: 'bold' }}>Q No.{questionNumber}. </span>
         {question}
       </p>
-
       <div className='option-container'>
         {question_type === 'multiple'
           ? renderCheckBoxes()
