@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { QUIZ } from "../DataFolder/QuizData"
 import QuestionComponent from "./QuestionComponent"
+import ProgressBar from "../Reused/ProgressBar"
 
 import step1 from "../../assets/images/step-icon-01.png"
 import step2 from "../../assets/images/step-icon-02.png"
@@ -77,6 +78,7 @@ function Home() {
   }
   return (
     <div className="main-container">
+    <ProgressBar bgcolor={"#e8c0aa"} completed={parseInt((QUESTIONS_PER_PAGE/TOTAL_QUESTIONS)*100 * currentPage)} />
       <div className="heading-container">
         <h1>Free Trauma Bond Test</h1>
         <p>Find out which type of trauma bond you have and how to break it</p>
