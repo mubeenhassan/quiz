@@ -6,6 +6,9 @@ body {
   background-color: #e8c0aa;
   box-sizing: border-box;
 }
+a{
+  text-decoration: none;
+}
 .heading-container h1 {
   font-size: 68.766px;
   color: rgb(255, 255, 255);
