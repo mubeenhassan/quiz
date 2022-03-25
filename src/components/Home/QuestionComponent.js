@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 const QuestionComponent = (props) => {
-  const { data, questionNumber, points, setPoints, key1 } = props
+  const { data, questionNumber, points, setPoints, questionID } = props
 
   const [questionData, setQuestionData] = useState(data)
   const [isSelected, setIsSelected] = useState("")
@@ -13,7 +13,6 @@ const QuestionComponent = (props) => {
   const { question, options, question_type } = questionData
 
   const handleChange = (event, item) => {
-    console.log(event.target)
     let data = reducePreviousCredit()
     item.credit.map((value, key) => {
       data = {
@@ -75,12 +74,12 @@ const QuestionComponent = (props) => {
         <div key={key} className="option">
           <input
             type="radio"
-            id={"radio"+key+key1}
+            id={"radio"+key+questionID}
             value={item.name}
             onChange={(event) => handleChange(event, item)}
             checked={isSelected === item.name}
           />
-          <label for={"radio"+key+key1}>{item.name}</label>
+          <label htmlFor={"radio"+key+questionID}>{item.name}</label>
         </div>
       )
     })
@@ -91,12 +90,12 @@ const QuestionComponent = (props) => {
         <div key={key} className="option multiple">
           <input
             type="checkbox"
-            id={"checkbox"+key+key1}
+            id={"checkbox"+key+questionID}
             value={item.name}
             onChange={handleCheckBoxes}
             checked={checkIfChecked(item.name)}
           />
-          <label for={"checkbox"+key+key1}>{item.name}</label>
+          <label htmlFor={"checkbox"+key+questionID}>{item.name}</label>
         </div>
       )
     })
