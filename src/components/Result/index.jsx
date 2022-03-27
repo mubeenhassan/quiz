@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import answer from '../../assets/images/awnser-woman.png'
@@ -30,6 +30,12 @@ let results = {
       "You can't see how you this person will never be in your life in someway, you were sure you were destined for one another and resisting their magnetic draw takes a strength that you just don't have right now.",
     bond: 'Your higher self wants you to know that you always have guidance and protection, and to not allow yourself to dwell too long in negativity. You have the power to transform negative energy into positive action and when you do this you are reminded of how capable and powerful you truly are.',
   },
+  even: {
+    how_it_feels: 'Even',
+    how_it_shows_up: 'Even',
+    your_biggest_challenge_right_now: 'Even',
+    bond: 'Even',
+  },
 }
 
 const Result = (props) => {
@@ -37,31 +43,64 @@ const Result = (props) => {
   const { PH, EM, EN, VI, AU, KI } = points
 
   const [email, setEmail] = useState('')
-
-  const renderResult = () => {
-    let result = {}
+  const [resultsToShow, setResultsToShow] = useState({})
+  const [phaseOneResult, setPhaseOneResult] = useState('')
+  const [phaseTwoResult, setPhaseTwoResult] = useState('')
+// push phaseOneResult and phaseTwoResult to google sheet as well
+  useEffect(() => {
+    countPhaseOne()
+    countPhaseTwo()
+  }, [])
+  const countPhaseOne = () => {
     if (
       (PH > EM && PH > EN) ||
       (PH === EM && PH > EN) ||
       (PH === EN && PH > EM)
     ) {
-      result = results.physical
+      setResultsToShow(results.physical)
+      setPhaseOneResult('Physical')
     } else if (
       (EM > PH && EM > EN) ||
       (EM === EM && EM > PH) ||
       (EM === PH && EM > EN)
     ) {
-      result = results.emotional
+      setResultsToShow(results.emotional)
+      setPhaseOneResult('Emotional')
     } else if (
       (EN > PH && EN > EM) ||
       (EN === PH && EN > EM) ||
       (EN === EM && EN > PH)
     ) {
-      result = results.energetic
+      setResultsToShow(results.energetic)
+      setPhaseOneResult('Energetic')
     } else if (PH === EM && EM === EN) {
-      result = 'EVEN'
+      setResultsToShow(results.even)
+      setPhaseOneResult('Even')
     }
-    return result
+  }
+
+  const countPhaseTwo = () => {
+    if (
+      (VI > AU && VI > KI) ||
+      (VI === AU && VI > KI) ||
+      (VI === KI && VI > AU)
+    ) {
+      setPhaseTwoResult('Visual')
+    } else if (
+      (AU > KI && AU > VI) ||
+      (AU === KI && AU > VI) ||
+      (AU === VI && AU > KI)
+    ) {
+      setPhaseTwoResult('Auditory')
+    } else if (
+      (KI > VI && KI > AU) ||
+      (KI === VI && KI > AU) ||
+      (KI === AU && KI > VI)
+    ) {
+      setPhaseTwoResult('Kinaesthetic')
+    } else if (VI === AU && VI === KI) {
+      setPhaseTwoResult('Evens')
+    }
   }
 
   const handleSubscribe = (e) => {
@@ -120,26 +159,26 @@ const Result = (props) => {
               <p>
                 <strong>How It Feels: </strong>
                 <br />
-                {renderResult().how_it_feels}
+                {resultsToShow.how_it_feels}
               </p>
               <hr className='horizontal' />
               <p>
                 <strong>How It Shows Up:</strong>
                 <br />
-                {renderResult().how_it_shows_up}
+                {resultsToShow.how_it_shows_up}
               </p>
               <hr className='horizontal' />
               <p>
                 <strong>Your Biggest Challenge Right Now:</strong>
                 <br />
-                {renderResult().your_biggest_challenge_right_now}
+                {resultsToShow.your_biggest_challenge_right_now}
               </p>
               <hr className='horizontal' />
               <p>
                 <strong> What your higher self wants you to know:</strong>
                 <br />
-                {renderResult().bond}
-              </p>{' '}
+                {resultsToShow.bond}
+              </p>
               <hr className='horizontal' />
             </div>
           </div>
