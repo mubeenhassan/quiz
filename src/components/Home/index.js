@@ -69,6 +69,7 @@ function Home() {
   const handleFinish = () => {
     setProgress(100)
     setIsQuizFinished(true)
+    window.scrollTo(0, 0)
   }
 
   const renderQuestions = () => {
@@ -76,7 +77,7 @@ function Home() {
       let questionNumber = (currentPage - 1) * QUESTIONS_PER_PAGE + key + 1
       return (
         <QuestionComponent
-          key={key}
+          key={questionNumber}
           questionID={key}
           data={questions}
           questionNumber={questionNumber}
