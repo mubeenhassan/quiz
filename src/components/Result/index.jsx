@@ -1,4 +1,5 @@
-import React from "react"
+import React, {useState} from "react"
+import axios from 'axios'
 
 import answer from "../../assets/images/awnser-woman.png"
 
@@ -31,10 +32,15 @@ let results = {
   },
 }
 
-const Result = ({ points }) => {
+const Result = (props) => {
+  const {setIsQuizFinished, points, setPoints} = props
+  const { PH, EM, EN, VI, AU, KI } = points
+
+  const [email, setEmail] = useState("")
+ 
+
   const renderResult = () => {
     let result = {}
-    const { PH, EM, EN, VI, AU, KI } = points
     if (
       (PH > EM && PH > EN) ||
       (PH === EM && PH > EN) ||
@@ -58,12 +64,38 @@ const Result = ({ points }) => {
     }
     return result
   }
+  
+  const handleSubscribe=(e)=>{
+    e.preventDefault()
+    const poinst_data={
+      Ph:PH,
+      Em:EM,
+      En:EN,
+      Vi:VI,
+      Au:AU,
+      Ki:KI,
+      Email:email
+    }
+    axios.post('https://sheet.best/api/sheets/6d559efe-381d-4bea-9fc1-9eec9112ca31',poinst_data).then((response)=>{
+      // console.log(response)
+      setEmail("")
+      setIsQuizFinished(false)
+      setPoints({
+        PH: 0,
+        EN: 0,
+        EM: 0,
+        KI: 0,
+        AU: 0,
+        VI: 0,
+      })
+    })
+  }
   return (
     <div>
       <br />
       <br />
       <br />
-      <div className="container">
+    <div className="container">
         <div className="physical-truma">
           <div className="left">
             <div className="left-truma">
@@ -112,9 +144,9 @@ const Result = ({ points }) => {
               Learn about your trauma bond type, your subconscious processing
               style and 3 things you do today to start breaking your bond{" "}
             </p>
-            <input type="email" placeholder="enter email address" />
-            <div btns>
-              <button>Go to your 3 steps </button>
+            <input type="email" placeholder="enter email address" onChange={(e)=>setEmail(e.target.value)}  value={email}/>
+            <div>
+              <button onClick={handleSubscribe}>Go to your 3 steps </button>
               <dir className="shadow-box"></dir>
             </div>
           </div>
