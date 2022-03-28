@@ -72,6 +72,20 @@ function Home() {
     window.scrollTo(0, 0)
   }
 
+  const renderResults=()=>{
+    return(
+      <div className='test'>
+        <strong>PH: </strong> {points.PH} <br/>
+        <strong>EM: </strong> {points.EM} <br/>
+        <strong>EN: </strong> {points.EN} <br/>
+        <strong>AU: </strong> {points.AU} <br/>
+        <strong>VI: </strong> {points.VI} <br/>
+        <strong>KI: </strong> {points.KI}
+      </div>
+    )
+
+  }
+
   const renderQuestions = () => {
     return quiz.map((questions, key) => {
       let questionNumber = (currentPage - 1) * QUESTIONS_PER_PAGE + key + 1
@@ -90,7 +104,7 @@ function Home() {
   return (
     <div className='main-container'>
       <ProgressBar bgcolor={'#e8c0aa'} completed={progress} />
-
+      {renderResults()}
       {isQuizFinished ? (
         <Result 
           points={points}
