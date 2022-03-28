@@ -131,6 +131,7 @@ const Result = (props) => {
           VI: 0,
         })
       })
+      window.location.reload();
   }
   return (
     <div>
