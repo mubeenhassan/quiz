@@ -113,8 +113,8 @@ const Result = (props) => {
       Auditory: AU,
       Kinaesthetic: KI,
       Email: email,
-      PhaseOne:phaseOneResult,
-      PhaseTwo:phaseTwoResult,
+      PhaseOneResult:phaseOneResult,
+      PhaseTwoResult:phaseTwoResult,
     }
     axios
       .post(
