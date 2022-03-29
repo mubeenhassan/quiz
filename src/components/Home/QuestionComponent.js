@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 const QuestionComponent = (props) => {
-  const { data, questionNumber, points, setPoints, questionID, isDisabled } = props
+  const { data, points, setPoints, questionID, isDisabled } = props
   const [questionData, setQuestionData] = useState(data)
   const [isSelected, setIsSelected] = useState('')
   const [checkBoxItems, setCheckBoxItems] = useState([])
@@ -79,7 +79,7 @@ const QuestionComponent = (props) => {
         })
       }
     })
-    setPoints(newPoints,questionID)
+    setPoints(newPoints, questionID)
   }
 
   const handleCheckBoxes = (event) => {
@@ -118,7 +118,10 @@ const QuestionComponent = (props) => {
   }
 
   return (
-    <div id={`question_${questionID}`} className={`question ${isDisabled ? 'disabledClass':''}`} >
+    <div
+      id={`question_${questionID}`}
+      className={`question ${isDisabled ? 'disabledClass' : ''}`}
+    >
       <p className='question-text'>
         {/* <span style={{ fontWeight: 'bold' }}>Q No.{questionNumber}. </span> */}
         {question}

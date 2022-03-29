@@ -65,8 +65,8 @@ function Home() {
         parseInt((QUESTIONS_PER_PAGE / TOTAL_QUESTIONS) * 100 * currentPage)
       )
       for (let i = 0; i < QUESTIONS_PER_PAGE; i++) {
-        if(i===0)  disabledQuestions.push(false)
-        else disabledQuestions.push(true)        
+        if (i === 0) disabledQuestions.push(false)
+        else disabledQuestions.push(true)
       }
       setDisabledQuizes(disabledQuestions)
     }
@@ -79,42 +79,47 @@ function Home() {
     window.scrollTo(0, 0)
   }
 
-  const renderResults=()=>{
-    return(
+  const renderResults = () => {
+    return (
       <div className='test'>
-        <strong>PH: </strong> {points.PH} <br/>
-        <strong>EM: </strong> {points.EM} <br/>
-        <strong>EN: </strong> {points.EN} <br/>
-        <strong>AU: </strong> {points.AU} <br/>
-        <strong>VI: </strong> {points.VI} <br/>
+        <strong>PH: </strong> {points.PH} <br />
+        <strong>EM: </strong> {points.EM} <br />
+        <strong>EN: </strong> {points.EN} <br />
+        <strong>AU: </strong> {points.AU} <br />
+        <strong>VI: </strong> {points.VI} <br />
         <strong>KI: </strong> {points.KI}
       </div>
     )
   }
 
-  const handleSetPoints=(p,questionID)=>{
+  const handleSetPoints = (p, questionID) => {
     unableQuiz(questionID)
     setPoints(p)
   }
 
-  const unableQuiz = (questionID)=>{
+  const unableQuiz = (questionID) => {
     let disabledPoints = [...disabledQuizes]
-    if(((questionID+1)<QUESTIONS_PER_PAGE) && disabledPoints[questionID+1]!==false){
-      disabledPoints[questionID+1]= false;
-      document.getElementById(`question_${questionID+1}`).scrollIntoView({block: "center"});
+    if (
+      questionID + 1 < QUESTIONS_PER_PAGE &&
+      disabledPoints[questionID + 1] !== false
+    ) {
+      disabledPoints[questionID + 1] = false
+      document.getElementById(`question_${questionID + 1}`) &&
+        document
+          .getElementById(`question_${questionID + 1}`)
+          .scrollIntoView({ block: 'center' })
       setDisabledQuizes(disabledPoints)
     }
   }
 
   const renderQuestions = () => {
     return quiz.map((questions, key) => {
-      // let questionNumber = (currentPage - 1) * QUESTIONS_PER_PAGE + key + 1
+      let questionNumber = (currentPage - 1) * QUESTIONS_PER_PAGE + key + 1
       return (
         <QuestionComponent
-          key={key}
+          key={questionNumber}
           questionID={key}
           data={questions}
-          // questionNumber={questionNumber}
           points={points}
           setPoints={handleSetPoints}
           isDisabled={disabledQuizes[key]}
