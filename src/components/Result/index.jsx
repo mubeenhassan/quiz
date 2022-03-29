@@ -51,7 +51,8 @@ const Result = (props) => {
   const [phaseOneResult, setPhaseOneResult] = useState('')
   const [phaseTwoResult, setPhaseTwoResult] = useState('')
   const [answerImg, setAnswerImg] = useState('')
-  let redirectLink=null
+  const [phaseOneLink, setPhaseOneLink] = useState('')
+  const [phaseTwoLink, setPhaseTwoLink] = useState('')
 // push phaseOneResult and phaseTwoResult to google sheet as well
   useEffect(() => {
     countPhaseOne()
@@ -65,6 +66,7 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.physical)
       setPhaseOneResult('Physical')
+      setPhaseOneLink('ph')
       setAnswerImg(Physical)
     } else if (
       (EM > PH && EM > EN) ||
@@ -73,8 +75,8 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.emotional)
       setPhaseOneResult('Emotional')
+      setPhaseOneLink('em')
       setAnswerImg(Emotional)
-
     } else if (
       (EN > PH && EN > EM) ||
       (EN === PH && EN > EM) ||
@@ -82,10 +84,12 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.energetic)
       setPhaseOneResult('Energetic')
+      setPhaseOneLink('en')
       setAnswerImg(Energetic)
     } else if (PH === EM && EM === EN) {
       setResultsToShow(results.even)
       setPhaseOneResult('Even')
+      setPhaseOneLink('ev')
       setAnswerImg(Even)
     }
   }
@@ -97,72 +101,28 @@ const Result = (props) => {
       (VI === KI && VI > AU)
     ) {
       setPhaseTwoResult('Visual')
+      setPhaseTwoLink('vi')
     } else if (
       (AU > KI && AU > VI) ||
       (AU === KI && AU > VI) ||
       (AU === VI && AU > KI)
     ) {
       setPhaseTwoResult('Auditory')
+      setPhaseTwoLink('au')
     } else if (
       (KI > VI && KI > AU) ||
       (KI === VI && KI > AU) ||
       (KI === AU && KI > VI)
     ) {
       setPhaseTwoResult('Kinaesthetic')
+      setPhaseTwoLink('ki')
     } else if (VI === AU && VI === KI) {
       setPhaseTwoResult('Evens')
+      setPhaseTwoLink('evs')
     }
   }
-  const handleLinks=()=>{
-    if (phaseOneResult==="Physical" && phaseTwoResult==="Visual") {
-      redirectLink="ph-vi"
-    }
-    else if (phaseOneResult==="Physical" && phaseTwoResult==="Auditory") {
-      redirectLink="ph-au"
-    }
-    else if (phaseOneResult==="Physical" && phaseTwoResult==="Kinaesthetic") {
-      redirectLink="ph-ki"
-    }
-    else if (phaseOneResult==="Physical" && phaseTwoResult==="Evens") {
-      redirectLink="ph-evs"
-    }
-    else if (phaseOneResult==="Emotional" && phaseTwoResult==="Visual") {
-      redirectLink="em-vi"
-    }
-    else if (phaseOneResult==="Emotional" && phaseTwoResult==="Auditory") {
-      redirectLink="em-au"
-    }
-    else if (phaseOneResult==="Emotional" && phaseTwoResult==="Kinaesthetic") {
-      redirectLink="em-ki"
-    }
-    else if (phaseOneResult==="Emotional" && phaseTwoResult==="Evens") {
-      redirectLink="em-evs"
-    }
-    else if (phaseOneResult==="Energetic" && phaseTwoResult==="Visual") {
-      redirectLink="en-vi"
-    }
-    else if (phaseOneResult==="Energetic" && phaseTwoResult==="Auditory") {
-      redirectLink="en-au"
-    }
-    else if (phaseOneResult==="Energetic" && phaseTwoResult==="Kinaesthetic") {
-      redirectLink="en-ki"
-    }
-    else if (phaseOneResult==="Energetic" && phaseTwoResult==="Evens") {
-      redirectLink="en-evs"
-    }
-    else if (phaseOneResult==="Even" && phaseTwoResult==="Visual") {
-      redirectLink="ev-vi"
-    }
-    else if (phaseOneResult==="Even" && phaseTwoResult==="Auditory") {
-      redirectLink="ev-au"
-    }
-    else if (phaseOneResult==="Even" && phaseTwoResult==="Kinaesthetic") {
-      redirectLink="ev-ki"
-    }
-    else if (phaseOneResult==="Even" && phaseTwoResult==="Evens") {
-      redirectLink="ev-evs"
-    }
-  }
+
+
   const handleSubscribe = (e) => {
     e.preventDefault()
     const poinst_data = {
@@ -182,8 +142,7 @@ const Result = (props) => {
         poinst_data
       )
       .then((response) => {
-        handleLinks()
-        window.location.replace(`https://www.youreasylifecoach.com/your-results-${redirectLink}`);
+        window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
       })
   }
   return (
