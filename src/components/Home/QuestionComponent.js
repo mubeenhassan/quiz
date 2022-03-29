@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 const QuestionComponent = (props) => {
-  const { data, points, setPoints, questionID } = props
-
+  const { data, points, setPoints, questionID, isDisabled } = props
   const [questionData, setQuestionData] = useState(data)
   const [isSelected, setIsSelected] = useState('')
   const [checkBoxItems, setCheckBoxItems] = useState([])
@@ -17,7 +16,7 @@ const QuestionComponent = (props) => {
     item.credit.map((i) => {
       newPoints[i.to] = newPoints[i.to] + i.points
     })
-    setPoints(newPoints)
+    setPoints(newPoints, questionID)
     setIsSelected(event.target.value)
   }
 
@@ -53,6 +52,7 @@ const QuestionComponent = (props) => {
             value={item.name}
             onChange={(event) => handleChange(event, item)}
             checked={isSelected === item.name}
+            disabled={isDisabled}
           />
           <label htmlFor={'radio' + key + questionID}>{item.name}</label>
         </div>
@@ -79,7 +79,7 @@ const QuestionComponent = (props) => {
         })
       }
     })
-    setPoints(newPoints)
+    setPoints(newPoints, questionID)
   }
 
   const handleCheckBoxes = (event) => {
@@ -109,6 +109,7 @@ const QuestionComponent = (props) => {
             value={item.name}
             onChange={handleCheckBoxes}
             checked={checkIfChecked(item.name)}
+            disabled={isDisabled}
           />
           <label htmlFor={'checkbox' + key + questionID}>{item.name}</label>
         </div>
@@ -117,7 +118,10 @@ const QuestionComponent = (props) => {
   }
 
   return (
-    <div className='question'>
+    <div
+      id={`question_${questionID}`}
+      className={`question ${isDisabled ? 'disabledClass' : ''}`}
+    >
       <p className='question-text'>
         {/* <span style={{ fontWeight: 'bold' }}>Q No.{questionNumber}. </span> */}
         {question}
