@@ -299,7 +299,7 @@ export const QUIZ = [
         credit: [
           {
             points: 1,
-            to: EN,
+            to: EM,
           },
         ],
       },
@@ -1571,7 +1571,7 @@ export const QUIZ = [
         name: "No",
         credit: [
           {
-            points: 2,
+            points: 1,
             to: EN,
           },
         ],
