@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import answer from '../../assets/images/awnser-woman.png'
+import Physical from '../../assets/images/Physical.png'
+import Emotional from '../../assets/images/Emotional.png'
+import Energetic from '../../assets/images/Energetic.png'
+import Even from '../../assets/images/Even.png'
 
 let results = {
   physical: {
@@ -46,6 +50,8 @@ const Result = (props) => {
   const [resultsToShow, setResultsToShow] = useState({})
   const [phaseOneResult, setPhaseOneResult] = useState('')
   const [phaseTwoResult, setPhaseTwoResult] = useState('')
+  const [answerImg, setAnswerImg] = useState('')
+  let redirectLink=null
 // push phaseOneResult and phaseTwoResult to google sheet as well
   useEffect(() => {
     countPhaseOne()
@@ -59,6 +65,7 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.physical)
       setPhaseOneResult('Physical')
+      setAnswerImg(Physical)
     } else if (
       (EM > PH && EM > EN) ||
       (EM === EM && EM > PH) ||
@@ -66,6 +73,8 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.emotional)
       setPhaseOneResult('Emotional')
+      setAnswerImg(Emotional)
+
     } else if (
       (EN > PH && EN > EM) ||
       (EN === PH && EN > EM) ||
@@ -73,9 +82,11 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.energetic)
       setPhaseOneResult('Energetic')
+      setAnswerImg(Energetic)
     } else if (PH === EM && EM === EN) {
       setResultsToShow(results.even)
       setPhaseOneResult('Even')
+      setAnswerImg(Even)
     }
   }
 
@@ -102,7 +113,56 @@ const Result = (props) => {
       setPhaseTwoResult('Evens')
     }
   }
-
+  const handleLinks=()=>{
+    if (phaseOneResult==="Physical" && phaseTwoResult==="Visual") {
+      redirectLink="www.youreasylifecoach.com/your-results-ph-vi"
+    }
+    else if (phaseOneResult==="Physical" && phaseTwoResult==="Auditory") {
+      redirectLink="www.youreasylifecoach.com/your-results-ph-au"
+    }
+    else if (phaseOneResult==="Physical" && phaseTwoResult==="Kinaesthetic") {
+      redirectLink="www.youreasylifecoach.com/your-results-ph-ki"
+    }
+    else if (phaseOneResult==="Physical" && phaseTwoResult==="Evens") {
+      redirectLink="www.youreasylifecoach.com/your-results-ph-evs"
+    }
+    else if (phaseOneResult==="Emotional" && phaseTwoResult==="Visual") {
+      redirectLink="www.youreasylifecoach.com/your-results-em-vi"
+    }
+    else if (phaseOneResult==="Emotional" && phaseTwoResult==="Auditory") {
+      redirectLink="www.youreasylifecoach.com/your-results-em-au"
+    }
+    else if (phaseOneResult==="Emotional" && phaseTwoResult==="Kinaesthetic") {
+      redirectLink="www.youreasylifecoach.com/your-results-em-ki"
+    }
+    else if (phaseOneResult==="Emotional" && phaseTwoResult==="Evens") {
+      redirectLink="www.youreasylifecoach.com/your-results-em-evs"
+    }
+    else if (phaseOneResult==="Energetic" && phaseTwoResult==="Visual") {
+      redirectLink="www.youreasylifecoach.com/your-results-en-vi"
+    }
+    else if (phaseOneResult==="Energetic" && phaseTwoResult==="Auditory") {
+      redirectLink="www.youreasylifecoach.com/your-results-en-au"
+    }
+    else if (phaseOneResult==="Energetic" && phaseTwoResult==="Kinaesthetic") {
+      redirectLink="www.youreasylifecoach.com/your-results-en-ki"
+    }
+    else if (phaseOneResult==="Energetic" && phaseTwoResult==="Evens") {
+      redirectLink="www.youreasylifecoach.com/your-results-en-evs"
+    }
+    else if (phaseOneResult==="Even" && phaseTwoResult==="Visual") {
+      redirectLink="www.youreasylifecoach.com/your-results-ev-vi"
+    }
+    else if (phaseOneResult==="Even" && phaseTwoResult==="Auditory") {
+      redirectLink="www.youreasylifecoach.com/your-results-ev-au"
+    }
+    else if (phaseOneResult==="Even" && phaseTwoResult==="Kinaesthetic") {
+      redirectLink="www.youreasylifecoach.com/your-results-ev-ki"
+    }
+    else if (phaseOneResult==="Even" && phaseTwoResult==="Evens") {
+      redirectLink="www.youreasylifecoach.com/your-results-ev-evs"
+    }
+  }
   const handleSubscribe = (e) => {
     e.preventDefault()
     const poinst_data = {
@@ -122,7 +182,8 @@ const Result = (props) => {
         poinst_data
       )
       .then((response) => {
-        window.location.reload();
+        handleLinks()
+        window.location.replace(`https://${redirectLink}`);
       })
   }
   return (
@@ -135,11 +196,11 @@ const Result = (props) => {
           <div className='left'>
             <div className='left-truma'>
               <div className='physical-img'>
-                <img src={answer} alt='' />
+                <img src={answerImg} alt='' />
               </div>
               <div className='physical-para'>
                 <h1>
-                  You have a <br /> <span className='phy'> Physical</span>
+                  You have a <br /> <span className='phy'> {phaseOneResult}</span>
                   <br /> trauma bond
                 </h1>
               </div>
