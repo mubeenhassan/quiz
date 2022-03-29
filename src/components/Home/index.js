@@ -37,6 +37,7 @@ function Home() {
   const [currentPage, setCurrentPage] = useState(0)
   const [progress, setProgress] = useState(0)
   const [isQuizFinished, setIsQuizFinished] = useState(false)
+  const [disabledQuizes, setDisabledQuizes] = useState([])
   const [points, setPoints] = useState({
     PH: 0,
     EN: 0,
@@ -52,6 +53,7 @@ function Home() {
 
   const handleNext = () => {
     // 0-7, 8-15, 16-23, 24-31, 32-30, 40-47
+    let disabledQuestions = []
     if (currentPage <= TOTAL_PAGES) {
       let quizData = [...QUIZ]
       let start = QUESTIONS_PER_PAGE * currentPage
@@ -62,6 +64,11 @@ function Home() {
       setProgress(
         parseInt((QUESTIONS_PER_PAGE / TOTAL_QUESTIONS) * 100 * currentPage)
       )
+      for (let i = 0; i < QUESTIONS_PER_PAGE; i++) {
+        if(i===0)  disabledQuestions.push(false)
+        else disabledQuestions.push(true)        
+      }
+      setDisabledQuizes(disabledQuestions)
     }
     window.scrollTo(0, 0)
   }
@@ -83,7 +90,20 @@ function Home() {
         <strong>KI: </strong> {points.KI}
       </div>
     )
+  }
 
+  const handleSetPoints=(p,questionID)=>{
+    unableQuiz(questionID)
+    setPoints(p)
+  }
+
+  const unableQuiz = (questionID)=>{
+    let disabledPoints = [...disabledQuizes]
+    if(((questionID+1)<QUESTIONS_PER_PAGE) && disabledPoints[questionID+1]!==false){
+      disabledPoints[questionID+1]= false;
+      document.getElementById(`question_${questionID+1}`).scrollIntoView({block: "center"});
+      setDisabledQuizes(disabledPoints)
+    }
   }
 
   const renderQuestions = () => {
@@ -96,7 +116,8 @@ function Home() {
           data={questions}
           // questionNumber={questionNumber}
           points={points}
-          setPoints={setPoints}
+          setPoints={handleSetPoints}
+          isDisabled={disabledQuizes[key]}
         />
       )
     })

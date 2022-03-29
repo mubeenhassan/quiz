@@ -461,3 +461,7 @@ a {
   background: #e8c0aa;
   padding: 16px;
 }
+
+.disabledClass{
+  opacity: 0.3
+}
