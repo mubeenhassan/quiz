@@ -115,52 +115,52 @@ const Result = (props) => {
   }
   const handleLinks=()=>{
     if (phaseOneResult==="Physical" && phaseTwoResult==="Visual") {
-      redirectLink="www.youreasylifecoach.com/your-results-ph-vi"
+      redirectLink="ph-vi"
     }
     else if (phaseOneResult==="Physical" && phaseTwoResult==="Auditory") {
-      redirectLink="www.youreasylifecoach.com/your-results-ph-au"
+      redirectLink="ph-au"
     }
     else if (phaseOneResult==="Physical" && phaseTwoResult==="Kinaesthetic") {
-      redirectLink="www.youreasylifecoach.com/your-results-ph-ki"
+      redirectLink="ph-ki"
     }
     else if (phaseOneResult==="Physical" && phaseTwoResult==="Evens") {
-      redirectLink="www.youreasylifecoach.com/your-results-ph-evs"
+      redirectLink="ph-evs"
     }
     else if (phaseOneResult==="Emotional" && phaseTwoResult==="Visual") {
-      redirectLink="www.youreasylifecoach.com/your-results-em-vi"
+      redirectLink="em-vi"
     }
     else if (phaseOneResult==="Emotional" && phaseTwoResult==="Auditory") {
-      redirectLink="www.youreasylifecoach.com/your-results-em-au"
+      redirectLink="em-au"
     }
     else if (phaseOneResult==="Emotional" && phaseTwoResult==="Kinaesthetic") {
-      redirectLink="www.youreasylifecoach.com/your-results-em-ki"
+      redirectLink="em-ki"
     }
     else if (phaseOneResult==="Emotional" && phaseTwoResult==="Evens") {
-      redirectLink="www.youreasylifecoach.com/your-results-em-evs"
+      redirectLink="em-evs"
     }
     else if (phaseOneResult==="Energetic" && phaseTwoResult==="Visual") {
-      redirectLink="www.youreasylifecoach.com/your-results-en-vi"
+      redirectLink="en-vi"
     }
     else if (phaseOneResult==="Energetic" && phaseTwoResult==="Auditory") {
-      redirectLink="www.youreasylifecoach.com/your-results-en-au"
+      redirectLink="en-au"
     }
     else if (phaseOneResult==="Energetic" && phaseTwoResult==="Kinaesthetic") {
-      redirectLink="www.youreasylifecoach.com/your-results-en-ki"
+      redirectLink="en-ki"
     }
     else if (phaseOneResult==="Energetic" && phaseTwoResult==="Evens") {
-      redirectLink="www.youreasylifecoach.com/your-results-en-evs"
+      redirectLink="en-evs"
     }
     else if (phaseOneResult==="Even" && phaseTwoResult==="Visual") {
-      redirectLink="www.youreasylifecoach.com/your-results-ev-vi"
+      redirectLink="ev-vi"
     }
     else if (phaseOneResult==="Even" && phaseTwoResult==="Auditory") {
-      redirectLink="www.youreasylifecoach.com/your-results-ev-au"
+      redirectLink="ev-au"
     }
     else if (phaseOneResult==="Even" && phaseTwoResult==="Kinaesthetic") {
-      redirectLink="www.youreasylifecoach.com/your-results-ev-ki"
+      redirectLink="ev-ki"
     }
     else if (phaseOneResult==="Even" && phaseTwoResult==="Evens") {
-      redirectLink="www.youreasylifecoach.com/your-results-ev-evs"
+      redirectLink="ev-evs"
     }
   }
   const handleSubscribe = (e) => {
@@ -183,7 +183,7 @@ const Result = (props) => {
       )
       .then((response) => {
         handleLinks()
-        window.location.replace(`https://${redirectLink}`);
+        window.location.replace(`https://www.youreasylifecoach.com/your-results-${redirectLink}`);
       })
   }
   return (
