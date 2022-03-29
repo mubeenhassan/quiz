@@ -39,7 +39,7 @@ let results = {
 }
 
 const Result = (props) => {
-  const { setIsQuizFinished, points, setPoints } = props
+  const {points} = props
   const { PH, EM, EN, VI, AU, KI } = points
 
   const [email, setEmail] = useState('')
@@ -106,13 +106,15 @@ const Result = (props) => {
   const handleSubscribe = (e) => {
     e.preventDefault()
     const poinst_data = {
-      Ph: PH,
-      Em: EM,
-      En: EN,
-      Vi: VI,
-      Au: AU,
-      Ki: KI,
+      Physical: PH,
+      Emotional: EM,
+      Energetic: EN,
+      Visual: VI,
+      Auditory: AU,
+      Kinaesthetic: KI,
       Email: email,
+      PhaseOne:phaseOneResult,
+      PhaseTwo:phaseTwoResult,
     }
     axios
       .post(
@@ -120,18 +122,8 @@ const Result = (props) => {
         poinst_data
       )
       .then((response) => {
-        setEmail('')
-        setIsQuizFinished(false)
-        setPoints({
-          PH: 0,
-          EN: 0,
-          EM: 0,
-          KI: 0,
-          AU: 0,
-          VI: 0,
-        })
+        window.location.reload();
       })
-      window.location.reload();
   }
   return (
     <div>
