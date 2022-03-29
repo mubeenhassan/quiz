@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 const QuestionComponent = (props) => {
-  const { data, questionNumber, points, setPoints, questionID } = props
+  const { data, points, setPoints, questionID } = props
 
   const [questionData, setQuestionData] = useState(data)
   const [isSelected, setIsSelected] = useState('')
@@ -119,7 +119,7 @@ const QuestionComponent = (props) => {
   return (
     <div className='question'>
       <p className='question-text'>
-        <span style={{ fontWeight: 'bold' }}>Q No.{questionNumber}. </span>
+        {/* <span style={{ fontWeight: 'bold' }}>Q No.{questionNumber}. </span> */}
         {question}
       </p>
       <div className='option-container'>

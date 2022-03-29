@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import answer from '../../assets/images/awnser-woman.png'
+import Physical from '../../assets/images/Physical.png'
+import Emotional from '../../assets/images/Emotional.png'
+import Energetic from '../../assets/images/Energetic.png'
+import Even from '../../assets/images/Even.png'
 
 let results = {
   physical: {
@@ -46,6 +50,9 @@ const Result = (props) => {
   const [resultsToShow, setResultsToShow] = useState({})
   const [phaseOneResult, setPhaseOneResult] = useState('')
   const [phaseTwoResult, setPhaseTwoResult] = useState('')
+  const [answerImg, setAnswerImg] = useState('')
+  const [phaseOneLink, setPhaseOneLink] = useState('')
+  const [phaseTwoLink, setPhaseTwoLink] = useState('')
 // push phaseOneResult and phaseTwoResult to google sheet as well
   useEffect(() => {
     countPhaseOne()
@@ -59,6 +66,8 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.physical)
       setPhaseOneResult('Physical')
+      setPhaseOneLink('ph')
+      setAnswerImg(Physical)
     } else if (
       (EM > PH && EM > EN) ||
       (EM === EM && EM > PH) ||
@@ -66,6 +75,8 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.emotional)
       setPhaseOneResult('Emotional')
+      setPhaseOneLink('em')
+      setAnswerImg(Emotional)
     } else if (
       (EN > PH && EN > EM) ||
       (EN === PH && EN > EM) ||
@@ -73,9 +84,13 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.energetic)
       setPhaseOneResult('Energetic')
+      setPhaseOneLink('en')
+      setAnswerImg(Energetic)
     } else if (PH === EM && EM === EN) {
       setResultsToShow(results.even)
       setPhaseOneResult('Even')
+      setPhaseOneLink('ev')
+      setAnswerImg(Even)
     }
   }
 
@@ -86,22 +101,27 @@ const Result = (props) => {
       (VI === KI && VI > AU)
     ) {
       setPhaseTwoResult('Visual')
+      setPhaseTwoLink('vi')
     } else if (
       (AU > KI && AU > VI) ||
       (AU === KI && AU > VI) ||
       (AU === VI && AU > KI)
     ) {
       setPhaseTwoResult('Auditory')
+      setPhaseTwoLink('au')
     } else if (
       (KI > VI && KI > AU) ||
       (KI === VI && KI > AU) ||
       (KI === AU && KI > VI)
     ) {
       setPhaseTwoResult('Kinaesthetic')
+      setPhaseTwoLink('ki')
     } else if (VI === AU && VI === KI) {
       setPhaseTwoResult('Evens')
+      setPhaseTwoLink('evs')
     }
   }
+
 
   const handleSubscribe = (e) => {
     e.preventDefault()
@@ -122,7 +142,7 @@ const Result = (props) => {
         poinst_data
       )
       .then((response) => {
-        window.location.reload();
+        window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
       })
   }
   return (
@@ -135,11 +155,11 @@ const Result = (props) => {
           <div className='left'>
             <div className='left-truma'>
               <div className='physical-img'>
-                <img src={answer} alt='' />
+                <img src={answerImg} alt='' />
               </div>
               <div className='physical-para'>
                 <h1>
-                  You have a <br /> <span className='phy'> Physical</span>
+                  You have a <br /> <span className='phy'> {phaseOneResult}</span>
                   <br /> trauma bond
                 </h1>
               </div>

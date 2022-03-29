@@ -504,7 +504,7 @@ export const QUIZ = [
         ],
       },
       {
-        name: "ddShoppingd",
+        name: "Shopping",
         credit: [
           {
             points: 2,

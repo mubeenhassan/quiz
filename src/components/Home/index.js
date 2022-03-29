@@ -88,13 +88,13 @@ function Home() {
 
   const renderQuestions = () => {
     return quiz.map((questions, key) => {
-      let questionNumber = (currentPage - 1) * QUESTIONS_PER_PAGE + key + 1
+      // let questionNumber = (currentPage - 1) * QUESTIONS_PER_PAGE + key + 1
       return (
         <QuestionComponent
-          key={questionNumber}
+          key={key}
           questionID={key}
           data={questions}
-          questionNumber={questionNumber}
+          // questionNumber={questionNumber}
           points={points}
           setPoints={setPoints}
         />
