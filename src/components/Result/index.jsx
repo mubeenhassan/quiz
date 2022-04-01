@@ -45,6 +45,7 @@ let results = {
 const Result = (props) => {
   const {points} = props
   const { PH, EM, EN, VI, AU, KI } = points
+  let groupId=null
 
   const [email, setEmail] = useState('')
   const [resultsToShow, setResultsToShow] = useState({})
@@ -122,9 +123,61 @@ const Result = (props) => {
     }
   }
 
+  const GroupId = ()=>{
+    if(phaseOneResult==='Emotional' && phaseTwoResult==='Auditory'){
+      return  groupId=111082042
+    }
+    else if(phaseOneResult==='Emotional' && phaseTwoResult==='Evens'){
+      return  groupId=111082046
+    }
+    else if(phaseOneResult==='Emotional' && phaseTwoResult==='Kinaesthetic'){
+      return groupId =111082044
+    }
+    else if(phaseOneResult==='Emotional' && phaseTwoResult==='Visual'){
+      return groupId =111082041
+    }
+    else if(phaseOneResult==='Energetic' && phaseTwoResult==='Auditory'){
+      return groupId =111082048
+    }
+    else if(phaseOneResult==='Energetic' && phaseTwoResult==='Evens'){
+      return groupId =111082051
+    }
+    else if(phaseOneResult==='Energetic' && phaseTwoResult==='Kinaesthetic'){
+      return groupId =111082050
+    }
+    else if(phaseOneResult==='Energetic' && phaseTwoResult==='Visual'){
+      return groupId =111082047
+    }
+    else if(phaseOneResult==='Even' && phaseTwoResult==='Auditory'){
+      return groupId =111082066
+    }
+    else if(phaseOneResult==='Even' && phaseTwoResult==='Evens'){
+      return groupId =111082069
+    }
+    else if(phaseOneResult==='Even' && phaseTwoResult==='Kinaesthetic'){
+      return groupId =111082068
+    }
+    else if(phaseOneResult==='Even' && phaseTwoResult==='Visual'){
+      return groupId =111082055
+    }
+    else if(phaseOneResult==='Physical' && phaseTwoResult==='Auditory'){
+      return groupId =111082034
+    }
+    else if(phaseOneResult==='Physical' && phaseTwoResult==='Evens'){
+      return groupId =111082036
+    }
+    else if(phaseOneResult==='Physical' && phaseTwoResult==='Kinaesthetic'){
+      return groupId =111082035
+    }
+    else if(phaseOneResult==='Physical' && phaseTwoResult==='Visual'){
+      return groupId =111082033
+    }
+  }
 
   const handleSubscribe = (e) => {
+    GroupId()
     e.preventDefault()
+    console.log(groupId)
     const poinst_data = {
       Physical: PH,
       Emotional: EM,
@@ -133,8 +186,10 @@ const Result = (props) => {
       Auditory: AU,
       Kinaesthetic: KI,
       Email: email,
-      PhaseOneResult:phaseOneResult,
-      PhaseTwoResult:phaseTwoResult,
+      PhaseOneResult : phaseOneResult,
+      PhaseTwoResult : phaseTwoResult,
+      SendToMailerLiteGroup : phaseOneResult+"/"+phaseTwoResult,
+      GroupID:groupId
     }
     axios
       .post(
