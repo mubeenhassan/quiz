@@ -48,13 +48,13 @@ const Result = (props) => {
   let groupId=null
 
   const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
   const [resultsToShow, setResultsToShow] = useState({})
   const [phaseOneResult, setPhaseOneResult] = useState('')
   const [phaseTwoResult, setPhaseTwoResult] = useState('')
   const [answerImg, setAnswerImg] = useState('')
   const [phaseOneLink, setPhaseOneLink] = useState('')
   const [phaseTwoLink, setPhaseTwoLink] = useState('')
-// push phaseOneResult and phaseTwoResult to google sheet as well
   useEffect(() => {
     countPhaseOne()
     countPhaseTwo()
@@ -186,6 +186,7 @@ const Result = (props) => {
       Auditory: AU,
       Kinaesthetic: KI,
       Email: email,
+      FirstName:name,
       PhaseOneResult : phaseOneResult,
       PhaseTwoResult : phaseTwoResult,
       SendToMailerLiteGroup : phaseOneResult+"/"+phaseTwoResult,
@@ -200,6 +201,7 @@ const Result = (props) => {
         window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
       })
   }
+  const a_or_an = (phaseOneResult==='Emotional' || phaseOneResult==='Energetic'|| phaseOneResult==='Even') ? 'an':'a'
   return (
     <div>
       <br />
@@ -214,7 +216,8 @@ const Result = (props) => {
               </div>
               <div className='physical-para'>
                 <h1>
-                  You have a <br /> <span className='phy'> {phaseOneResult}</span>
+                  You have {a_or_an}                  
+                   <br /> <span className='phy'> {phaseOneResult}</span>
                   <br /> trauma bond
                 </h1>
               </div>
@@ -259,10 +262,17 @@ const Result = (props) => {
               style and 3 things you do today to start breaking your bond{' '}
             </p>
             <input
+              type='name'
+              placeholder='First Name'
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
+            <input
               type='email'
-              placeholder='enter email address'
+              placeholder='Enter Email Address'
               onChange={(e) => setEmail(e.target.value)}
               value={email}
+              required={true}
             />
             <div>
               <button onClick={handleSubscribe}>Go to your 3 steps </button>

@@ -104,10 +104,10 @@ function Home() {
       disabledPoints[questionID + 1] !== false
     ) {
       disabledPoints[questionID + 1] = false
-      document.getElementById(`question_${questionID + 1}`) &&
-        document
-          .getElementById(`question_${questionID + 1}`)
-          .scrollIntoView({ block: 'center' })
+      // document.getElementById(`question_${questionID + 1}`) &&
+      //   document
+      //     .getElementById(`question_${questionID + 1}`)
+      //     .scrollIntoView({ block: 'center' })
       setDisabledQuizes(disabledPoints)
     }
   }

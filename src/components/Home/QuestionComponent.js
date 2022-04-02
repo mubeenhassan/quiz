@@ -126,6 +126,9 @@ const QuestionComponent = (props) => {
         {/* <span style={{ fontWeight: 'bold' }}>Q No.{questionNumber}. </span> */}
         {question}
       </p>
+      <p className="selection-hint">
+        ({question_type === 'multiple'? "tick all that apply":"tick one"})
+      </p>
       <div className='option-container'>
         {question_type === 'multiple'
           ? renderCheckBoxes()
