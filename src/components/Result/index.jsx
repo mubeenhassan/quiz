@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import answer from '../../assets/images/awnser-woman.png'
-import Physical from '../../assets/images/Physical.png'
-import Emotional from '../../assets/images/Emotional.png'
-import Energetic from '../../assets/images/Energetic.png'
-import Even from '../../assets/images/Even.png'
 
 let results = {
   physical: {
@@ -68,7 +63,7 @@ const Result = (props) => {
       setResultsToShow(results.physical)
       setPhaseOneResult('Physical')
       setPhaseOneLink('ph')
-      setAnswerImg(Physical)
+      setAnswerImg("https://media-public.canva.com/4nIMI/MADmds4nIMI/2/s.svg")
     } else if (
       (EM > PH && EM > EN) ||
       (EM === EM && EM > PH) ||
@@ -77,7 +72,7 @@ const Result = (props) => {
       setResultsToShow(results.emotional)
       setPhaseOneResult('Emotional')
       setPhaseOneLink('em')
-      setAnswerImg(Emotional)
+      setAnswerImg("https://media-public.canva.com/In1uw/MADmdmIn1uw/2/s.svg")
     } else if (
       (EN > PH && EN > EM) ||
       (EN === PH && EN > EM) ||
@@ -86,12 +81,12 @@ const Result = (props) => {
       setResultsToShow(results.energetic)
       setPhaseOneResult('Energetic')
       setPhaseOneLink('en')
-      setAnswerImg(Energetic)
+      setAnswerImg("https://media-public.canva.com/xyqpY/MADmdoxyqpY/2/s.svg")
     } else if (PH === EM && EM === EN) {
       setResultsToShow(results.even)
       setPhaseOneResult('Even')
       setPhaseOneLink('ev')
-      setAnswerImg(Even)
+      setAnswerImg("https://media-public.canva.com/is-Sk/MADmdgis-Sk/2/s.svg")
     }
   }
 
@@ -203,11 +198,8 @@ const Result = (props) => {
   }
   const a_or_an = (phaseOneResult==='Emotional' || phaseOneResult==='Energetic'|| phaseOneResult==='Even') ? 'an':'a'
   return (
-    <div>
-      <br />
-      <br />
-      <br />
       <div className='container'>
+        <div className="result-container">
         <div className='physical-truma'>
           <div className='left'>
             <div className='left-truma'>
@@ -254,6 +246,7 @@ const Result = (props) => {
             </div>
           </div>
         </div>
+        </div>
         <div className='find-out-main'>
           <div className='find-out'>
             <h1>Find out more! </h1>
@@ -281,7 +274,6 @@ const Result = (props) => {
           </div>
         </div>
       </div>
-    </div>
   )
 }
 export default Result

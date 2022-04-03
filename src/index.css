@@ -12,8 +12,12 @@ body {
 a {
   text-decoration: none;
 }
+.heading-container {
+  max-width: 866px;
+  margin: auto;
+}
 .heading-container h1 {
-  font-size: 80px;
+  font-size: 65px;
   color: rgb(255, 255, 255);
   line-height: 96px;
   font-weight: 700;
@@ -222,6 +226,13 @@ a {
 /* ................... answers sheet ------------------------- */
 .physical-truma {
   display: flex;
+  width: 90%;
+  margin: auto;
+  background: #e8c0aa;
+  margin: 44px;
+  padding: 30px 10px;
+  border-radius: 24px;
+  box-sizing: border-box;
 }
 .physical-para {
   font-weight: 400;
@@ -440,6 +451,148 @@ a {
     margin: auto !important;
     border-radius: unset;
   }
+}
+.result-container {
+  background: #f7e7d7;
+  padding: 100px 10px;
+  box-sizing: border-box;
+}
+.review-card-container {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+.review-card {
+  width: 275px;
+  position: relative;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 20px;
+}
+.review-card span {
+  font-size: 8rem;
+  font-family: serif;
+  font-weight: 900;
+  line-height: 0;
+  color: #a9a3a3;
+}
+.review-card p {
+  color: #d9d9d9;
+  font-size: 20px;
+  line-height: 28px;
+  padding: 14px;
+  margin-top: 60px;
+}
+.review-card img {
+  width: 74px;
+  height: 74px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+}
+.review-card h1 {
+  font-size: 17px;
+}
+.card-shadow {
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+  height: 48px;
+  top: -5px;
+  background-color: green;
+  border-radius: 20px;
+}
+.physical-c {
+  box-shadow:0 -4px #84baae;
+}
+.emotional-c {
+  box-shadow:0 -4px  #f0bbb0;;
+}
+.energetic-c {
+  box-shadow:0 -4px  #f7a34d;
+}
+.physical-c h1 {
+  color: #84baae;
+}
+.emotional-c h1{
+  color: #f0bbb0;;
+}
+.energetic-c h1 {
+  color: #f7a34d;
+}
+.reviews-container {
+  background-color: #f9eee9;
+  padding: 40px 0;
+  z-index: 0;
+}
+.reviews-counter {
+ margin-bottom: 44px;
+}
+.reviews-counter h2{
+  color: #e8c0aa;
+  font-size: 49px;
+  font-weight: 400;
+}
+.reviews-counter h1 {
+  font-size: 54px;
+  color: #737373;
+}
+
+.reviews-counter p {
+  color: #737373;
+  font-size: 20px;
+  line-height: 18px;
+}
+.reviews-counter p span {
+  color: #e8c0aa;
+}
+.landingpage .heading-container {
+  position: relative;
+}
+.landingpage .heading-container h1 {
+  font-size: 44px;
+  line-height: 1.5;
+}
+.first-btn button {
+  background: #f7e7d7;
+  color: #737373;
+}
+.first-btn p {
+  color: white;
+}
+.b-img-1 {
+  position: absolute;
+  width: 234.589px;
+  height: 307.2px;
+  left: 0%;
+  top: 34%;
+}
+.b-img-2 {
+  position: absolute;
+  width: 205.547px;
+  height: 207.433px;
+  left: 30%;
+  top: 62%;
+}
+.b-img-3 {
+  position: absolute;
+  width: 224.774px;
+  height: 364.677px;
+  left: 67%;
+  top: 35%;
+}
+.b-img-4 {
+  position: absolute;
+  width: 140.297px;
+  height: 148.677px;
+  left: 100%;
+  top: 50%;
+}
+.h300 {
+  height: 300px;
 }
 @media screen and (max-width: 480px) {
   .find-out {
