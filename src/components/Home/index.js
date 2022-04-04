@@ -50,13 +50,19 @@ function Home(props) {
   })
 
   useEffect(() => {
+
     handleNext()
+    window.scrollTo(0, 0)
+
   }, [])
 
   const handleNext = () => {
     // 0-7, 8-15, 16-23, 24-31, 32-30, 40-47
+
     let disabledQuestions = []
     if (currentPage <= TOTAL_PAGES) {
+      window.scrollTo(0, 500)
+
       let quizData = [...QUIZ]
       let start = QUESTIONS_PER_PAGE * currentPage
       let end = QUESTIONS_PER_PAGE * (currentPage + 1) - 1
@@ -72,13 +78,11 @@ function Home(props) {
       }
       setDisabledQuizes(disabledQuestions)
     }
-    window.scrollTo(0, 0)
   }
 
   const handleFinish = () => {
     setProgress(100)
     setIsQuizFinished(true)
-    window.scrollTo(0, 0)
   }
 
   const renderResults = () => {
@@ -152,8 +156,10 @@ function Home(props) {
                     <div className="step-icon">
                       <img src={item.icon} />
                     </div>
-                    <h2>{item.heading}</h2>
-                    <p>{item.description}</p>
+                    <div className="step-heads">
+                      <h2>{item.heading}</h2>
+                      <p>{item.description}</p>
+                    </div>
                   </div>
                 ))}
               </div>

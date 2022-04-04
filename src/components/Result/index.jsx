@@ -247,12 +247,16 @@ const Result = (props) => {
           </div>
         </div>
         </div>
+        <div className="know-more">
+          <h1>Do you want to know more?</h1>
+          <h3>Enter your details to get a full breakdown and find out what THREE ACTIONS you can take TODAY to start breaking your bond</h3>
+        </div>
+        
         <div className='find-out-main'>
           <div className='find-out'>
             <h1>Find out more! </h1>
             <p>
-              Learn about your trauma bond type, your subconscious processing
-              style and 3 things you do today to start breaking your bond{' '}
+              Learn about your trauma bond type, your subconscious processing style and 3 things you can do today to start breaking your bond
             </p>
             <input
               type='name'
