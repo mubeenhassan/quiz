@@ -12,10 +12,11 @@ body {
 a {
   text-decoration: none;
 }
-.heading-container {
+.take-test-head {
   max-width: 866px;
   margin: auto;
 }
+.know-more h1,
 .heading-container h1 {
   font-size: 65px;
   color: rgb(255, 255, 255);
@@ -26,6 +27,7 @@ a {
   margin-top: 180px;
   text-shadow: 2px 2px 8px #000;
 }
+.know-more h3,
 .heading-container p {
   font-size: 20px;
   color: rgb(255, 255, 255);
@@ -95,7 +97,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition:opacity 0.75s;
+  transition: opacity 0.75s;
 }
 .option {
   display: flex;
@@ -263,18 +265,11 @@ a {
 }
 
 .left-truma {
-  /* max-height: fit-content; */
-  /* max-width: fit-content; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0px 8vh;
   position: relative;
-  /* text-align: center; */
   align-items: center;
-
-  width: 50%;
-  height: 50%;
 }
 .right-truma {
   max-height: fit-content;
@@ -293,7 +288,7 @@ a {
 .right-truma p {
   text-align: left;
   font-weight: 400;
-  color: rgb(247, 231, 215);
+  color: white;
   padding: 5px 0px;
   margin: 0;
   font-size: 18px;
@@ -379,77 +374,17 @@ a {
   border-radius: 50%;
 }
 
-.selection-hint{
+.selection-hint {
   margin: 0px;
   text-transform: capitalize;
-
 }
 @media screen and (max-width: 1024px) {
   .right-truma p {
     font-weight: 700;
     font-style: normal;
-    color: rgb(247, 231, 215);
     text-decoration: none;
     padding: 16px 0px;
     font-size: 16px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .physical-truma {
-    display: flex;
-    flex-direction: column;
-  }
-  .left {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 28vh;
-    padding: 14% 0%;
-  }
-  .right {
-    width: 100%;
-    justify-content: end;
-    display: flex;
-    justify-content: center;
-    margin-top: 12%;
-  }
-  .right-truma h1 {
-    font-weight: 400;
-    font-size: 5vh;
-    color: rgb(255, 255, 255);
-    text-shadow: rgb(0 0 0 / 33%) 0px 2.57872px 10.9596px;
-    padding: 2vh 0vw;
-  }
-  .right-truma {
-    padding-right: 0%;
-  }
-  .right-truma p {
-    padding: 8px 0px;
-  }
-
-  .physical-para {
-    font-weight: 400;
-    font-style: normal;
-    color: rgb(255, 255, 255);
-    font-size: 16px;
-    position: absolute;
-    top: 140%;
-    text-align: center;
-  }
-  .find-out p {
-    font-size: 20px;
-  }
-  .find-out input {
-    font-size: 14px;
-  }
-  .find-out button {
-    font-size: 24px;
-  }
-  .question-container {
-    margin: auto !important;
-    border-radius: unset;
   }
 }
 .result-container {
@@ -506,19 +441,19 @@ a {
   border-radius: 20px;
 }
 .physical-c {
-  box-shadow:0 -4px #84baae;
+  box-shadow: 0 -4px #84baae;
 }
 .emotional-c {
-  box-shadow:0 -4px  #f0bbb0;;
+  box-shadow: 0 -4px #f0bbb0;
 }
 .energetic-c {
-  box-shadow:0 -4px  #f7a34d;
+  box-shadow: 0 -4px #f7a34d;
 }
 .physical-c h1 {
   color: #84baae;
 }
-.emotional-c h1{
-  color: #f0bbb0;;
+.emotional-c h1 {
+  color: #f0bbb0;
 }
 .energetic-c h1 {
   color: #f7a34d;
@@ -529,9 +464,9 @@ a {
   z-index: 0;
 }
 .reviews-counter {
- margin-bottom: 44px;
+  margin-bottom: 44px;
 }
-.reviews-counter h2{
+.reviews-counter h2 {
   color: #e8c0aa;
   font-size: 49px;
   font-weight: 400;
@@ -565,35 +500,131 @@ a {
 }
 .b-img-1 {
   position: absolute;
-  width: 234.589px;
-  height: 307.2px;
+  width: 25%;
+  height: 50%;
   left: 0%;
-  top: 34%;
+  top: 50%;
 }
 .b-img-2 {
   position: absolute;
-  width: 205.547px;
-  height: 207.433px;
+  width: 12%;
+  height: 30%;
   left: 30%;
-  top: 62%;
+  top: 65%;
 }
 .b-img-3 {
   position: absolute;
-  width: 224.774px;
-  height: 364.677px;
-  left: 67%;
-  top: 35%;
+  width: 25%;
+  height: 50%;
+  right: 0;
+  top: 50%;
 }
 .b-img-4 {
   position: absolute;
-  width: 140.297px;
-  height: 148.677px;
-  left: 100%;
-  top: 50%;
+  width: 12%;
+  height: 30%;
+  right: 30%;
+  top: 65%;
 }
 .h300 {
   height: 300px;
 }
+.know-more {
+  width: 90%;
+  margin: auto;
+}
+@media screen and (max-width: 768px) {
+  .physical-truma {
+    display: flex;
+    flex-direction: column;
+  }
+  .left {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 28vh;
+    padding: 14% 0%;
+  }
+  .right {
+    width: 100%;
+    justify-content: end;
+    display: flex;
+    justify-content: center;
+    margin-top: 12%;
+  }
+  .right-truma h1 {
+    font-weight: 400;
+    font-size: 5vh;
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(0 0 0 / 33%) 0px 2.57872px 10.9596px;
+    padding: 2vh 0vw;
+  }
+  .right-truma {
+    padding-right: 0%;
+  }
+  .right-truma p {
+    padding: 8px 0px;
+  }
+
+  .physical-para {
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    position: absolute;
+    top: 140%;
+    text-align: center;
+  }
+  .find-out p {
+    font-size: 20px;
+  }
+  .find-out input {
+    font-size: 14px;
+  }
+  .find-out button {
+    font-size: 24px;
+  }
+  .question-container {
+    margin: auto !important;
+    border-radius: unset;
+  }
+  .review-card-container {
+    flex-direction: column;
+  }
+  .review-card {
+    width: 90%;
+    margin: 20px auto;
+  }
+  .img-comment {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 50px;
+  }
+  .img-comment p {
+    width: 80%;
+    margin: 0;
+    padding: 10px 0;
+  }
+  .step-card {
+    width: 90%;
+    display: flex;
+    align-items: center;
+  }
+  .step-card .step-heads {
+    text-align: left;
+    padding-left: 12px;
+  }
+  .physical-img img {
+    width: 73%;
+  }
+  .physical-para {
+    top: 73%;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .find-out {
     width: 78%;
@@ -601,7 +632,7 @@ a {
   .right {
     margin-top: 22%;
   }
-  .heading-container h1{
+  .heading-container h1 {
     font-size: 48px;
   }
 }
@@ -612,11 +643,10 @@ a {
   color: #a6a6a6;
   line-height: 27px;
   font-weight: 400;
-  opacity: 1; 
+  opacity: 1;
 }
 
-
-.test{
+.test {
   position: fixed;
   top: 50px;
   color: white;
@@ -626,6 +656,6 @@ a {
   padding: 16px;
 }
 
-.disabledClass{
-  opacity: 0.3
+.disabledClass {
+  opacity: 0.3;
 }

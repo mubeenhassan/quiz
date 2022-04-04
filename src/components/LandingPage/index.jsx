@@ -40,6 +40,7 @@ const LandingPage = (props) => {
   return (
     <div className="landingpage">
       <div className="heading-container">
+        <div className="take-test-head">
         <h1>
           "It's so incredible to finally understand what is happening to me
           right now."
@@ -49,6 +50,7 @@ const LandingPage = (props) => {
           of what is showing up for you right now and how to move forward from
           here
         </p>
+        </div>
         <TateTestButton arrow={blackArrow} className="first-btn" {...props} />
         <div className="h300" />
       <div className="bond-images">
@@ -73,8 +75,10 @@ const LandingPage = (props) => {
           {REVIEWS.map((item, key) => (
             <div key={key} className={`review-card ${item.class}`}>
               <span>,,</span>
+              <div className="img-comment">
               <p>"{item.comment}"</p>
               <img src={item.image} alt="bond" />
+              </div>
               <h1>
                 {item.name} - "{item.bond}"
               </h1>
