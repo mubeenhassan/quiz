@@ -198,7 +198,8 @@ a {
   top: unset !important;
 }
 .next-button {
-  width: 292.168px;
+  max-width: 292.168px;
+  width:100%;
   background: #e8c0aa;
   outline: none;
   border: none;
@@ -537,6 +538,7 @@ a {
   .physical-truma {
     display: flex;
     flex-direction: column;
+    margin: auto;
   }
   .left {
     width: 100%;
@@ -635,6 +637,19 @@ a {
   .heading-container h1 {
     font-size: 48px;
   }
+
+  .heading-container{
+    padding: 0px 8px;
+  }
+  .img-comment p{
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  .review-card img{
+    margin: auto 8px;
+  }
+
 }
 .right-truma p strong {
   font-size: 19px;
@@ -654,6 +669,7 @@ a {
   font-size: 22px;
   background: #e8c0aa;
   padding: 16px;
+  display:none;
 }
 
 .disabledClass {
