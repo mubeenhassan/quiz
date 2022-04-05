@@ -51,6 +51,7 @@ const Result = (props) => {
   const [phaseOneLink, setPhaseOneLink] = useState('')
   const [phaseTwoLink, setPhaseTwoLink] = useState('')
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     countPhaseOne()
     countPhaseTwo()
   }, [])

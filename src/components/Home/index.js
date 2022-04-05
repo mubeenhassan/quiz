@@ -52,7 +52,6 @@ function Home(props) {
   useEffect(() => {
 
     handleNext()
-    window.scrollTo(0, 0)
 
   }, [])
 
@@ -61,8 +60,7 @@ function Home(props) {
 
     let disabledQuestions = []
     if (currentPage <= TOTAL_PAGES) {
-      window.scrollTo(0, 500)
-
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       let quizData = [...QUIZ]
       let start = QUESTIONS_PER_PAGE * currentPage
       let end = QUESTIONS_PER_PAGE * (currentPage + 1) - 1

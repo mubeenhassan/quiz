@@ -17,7 +17,6 @@ function App() {
         setTestTaken(response.data.length)
       })   
   })
-  console.log(TestTaken)
 
   return (
     <div className='App'>
