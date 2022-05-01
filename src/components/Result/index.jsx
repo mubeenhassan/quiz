@@ -65,6 +65,7 @@ const Result = (props) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     countPhaseOne()
     countPhaseTwo()
+    handleSubscribe()
   }, [])
   const countPhaseOne = () => {
     if (
@@ -217,9 +218,6 @@ const Result = (props) => {
   }
   
   const a_or_an = (phaseOneResult==='Emotional' || phaseOneResult==='Energetic'|| phaseOneResult==='Even') ? 'an':'a'
-  if(!finish) {
-    handleSubscribe()
-  }
   return (
       <div className='container'>
         <div className="result-container">
