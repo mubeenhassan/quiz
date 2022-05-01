@@ -47,7 +47,7 @@ let resultPhaseTwo= {
 }
 
 const Result = (props) => {
-  const {points, isQuizFinished} = props
+  const {points} = props
   const { PH, EM, EN, VI, AU, KI } = points
   let groupId=null
   const [finish, setFinish]=useState(false)

@@ -138,7 +138,7 @@ function Home(props) {
           <ProgressBar bgcolor={"#e8c0aa"} completed={progress} />
           {renderResults()}
           {isQuizFinished ? (
-            <Result points={points} isQuizFinished={isQuizFinished}/>
+            <Result points={points}/>
           ) : (
             <React.Fragment>
               <div className="heading-container">
