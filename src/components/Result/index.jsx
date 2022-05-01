@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
+import processorVisual from "../../assets/images/processor/processor-visual.png"
+import processorAuditory from "../../assets/images/processor/processor-auditory.png"
+import processorKin from "../../assets/images/processor/processor-kin.png"
+import processorEven from "../../assets/images/processor/processor-even.png"
 
 let results = {
   physical: {
@@ -36,20 +39,28 @@ let results = {
     bond: 'Even',
   },
 }
+let resultPhaseTwo= {
+  visual:"You have indicated that you have a visual processing style. In order to communicate your desire to break your trauma bond to your subconscious you need to take actions and practice techniques which will break the bond in a way that you can see happening. Your tendency to move, think and talk faster than most means that you have the capacity to access a lot of information quickly leaving you little time to really describe what is going on in your head. By incorporating diagrams, imagery and guided visualisations into your process you can start to gain clarity over what life looks like without your trauma bond and your mind will soon be as uncluttered as you like your desk to be.",
+  auditory:"You have indicated that you have an auditory processing style. In order to communicate your desire to break your trauma bond to your subconscious you need to take actions and practice techniques which will break the bond in a way that you can hear happening. Your tendency to understand better by listening and talking means you can easily repeat both negative and positive conversations back to yourself with accuracy. This is important since it is within these words that the truth lies. By incorporating music, mantras and the spoken word into your process you can break your trauma bond in a way that facilitates the harmonious life you desire.",
+  kinaesthetic:"You have indicated that you have a kinaesthetic processing style. In order to communicate your desire to break your trauma bond to your subconscious you need to take actions and practice techniques which will break the bond in a way that you can feel happening. Your tendency to memorise by trying, experiencing and walking through things means you are most interested in doing the things that 'feel right' to you. This is important since it is with actions that communicate your desire to sever the strands of your trauma bond you will truly feel free and able to breathe deeply again.",
+  evens:"You have indicated that you have an even mix of all of the processing styles. This is excellent news as it means that in order to communicate your desire to break your trauma bond to your subconscious you can take a wide range of actions and practice techniques which will break the bond in a way that you can see, hear and feel happening. Your broad and open processing style means that you are able to understand and pay attention in many different settings and for long periods of time. You are a quick learner and your 'can-do' attitude will serve you well as you take your first steps to break your trauma bond."
+}
 
 const Result = (props) => {
   const {points} = props
   const { PH, EM, EN, VI, AU, KI } = points
   let groupId=null
-
+  const [finish, setFinish]=useState(false)
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [resultsToShow, setResultsToShow] = useState({})
+  const [resultsToShowPhasetwo, setResultsToShowPhaseTwo] = useState("")
   const [phaseOneResult, setPhaseOneResult] = useState('')
   const [phaseTwoResult, setPhaseTwoResult] = useState('')
   const [answerImg, setAnswerImg] = useState('')
-  const [phaseOneLink, setPhaseOneLink] = useState('')
-  const [phaseTwoLink, setPhaseTwoLink] = useState('')
+  const [answerImg2, setAnswerImg2] = useState('')
+  // const [phaseOneLink, setPhaseOneLink] = useState('')
+  // const [phaseTwoLink, setPhaseTwoLink] = useState('')
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     countPhaseOne()
@@ -63,7 +74,7 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.physical)
       setPhaseOneResult('Physical')
-      setPhaseOneLink('ph')
+      // setPhaseOneLink('ph')
       setAnswerImg("https://media-public.canva.com/4nIMI/MADmds4nIMI/2/s.svg")
     } else if (
       (EM > PH && EM > EN) ||
@@ -72,7 +83,7 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.emotional)
       setPhaseOneResult('Emotional')
-      setPhaseOneLink('em')
+      // setPhaseOneLink('em')
       setAnswerImg("https://media-public.canva.com/In1uw/MADmdmIn1uw/2/s.svg")
     } else if (
       (EN > PH && EN > EM) ||
@@ -81,12 +92,12 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.energetic)
       setPhaseOneResult('Energetic')
-      setPhaseOneLink('en')
+      // setPhaseOneLink('en')
       setAnswerImg("https://media-public.canva.com/xyqpY/MADmdoxyqpY/2/s.svg")
     } else if (PH === EM && EM === EN) {
       setResultsToShow(results.even)
       setPhaseOneResult('Even')
-      setPhaseOneLink('ev')
+      // setPhaseOneLink('ev')
       setAnswerImg("https://media-public.canva.com/is-Sk/MADmdgis-Sk/2/s.svg")
     }
   }
@@ -97,25 +108,33 @@ const Result = (props) => {
       (VI === AU && VI > KI) ||
       (VI === KI && VI > AU)
     ) {
+      setResultsToShowPhaseTwo(resultPhaseTwo.visual)
       setPhaseTwoResult('Visual')
-      setPhaseTwoLink('vi')
+      setAnswerImg2(processorVisual)
+      // setPhaseTwoLink('vi')
     } else if (
       (AU > KI && AU > VI) ||
       (AU === KI && AU > VI) ||
       (AU === VI && AU > KI)
     ) {
+      setResultsToShowPhaseTwo(resultPhaseTwo.auditory)
       setPhaseTwoResult('Auditory')
-      setPhaseTwoLink('au')
+      setAnswerImg2(processorAuditory)
+      // setPhaseTwoLink('au')
     } else if (
       (KI > VI && KI > AU) ||
       (KI === VI && KI > AU) ||
       (KI === AU && KI > VI)
     ) {
+      setResultsToShowPhaseTwo(resultPhaseTwo.kinaesthetic)
       setPhaseTwoResult('Kinaesthetic')
-      setPhaseTwoLink('ki')
+      setAnswerImg2(processorKin)
+      // setPhaseTwoLink('ki')
     } else if (VI === AU && VI === KI) {
+      setResultsToShowPhaseTwo(resultPhaseTwo.evens)
       setPhaseTwoResult('Evens')
-      setPhaseTwoLink('evs')
+      // setPhaseTwoLink('evs')
+      setAnswerImg2(processorEven)
     }
   }
 
@@ -172,8 +191,7 @@ const Result = (props) => {
 
   const handleSubscribe = (e) => {
     GroupId()
-    e.preventDefault()
-    console.log(groupId)
+    // e.preventDefault()
     const poinst_data = {
       Physical: PH,
       Emotional: EM,
@@ -194,10 +212,14 @@ const Result = (props) => {
         poinst_data
       )
       .then((response) => {
-        window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
+        // window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
       })
   }
+  
   const a_or_an = (phaseOneResult==='Emotional' || phaseOneResult==='Energetic'|| phaseOneResult==='Even') ? 'an':'a'
+  if(!finish) {
+    handleSubscribe()
+  }
   return (
       <div className='container'>
         <div className="result-container">
@@ -248,12 +270,38 @@ const Result = (props) => {
           </div>
         </div>
         </div>
+        <div className="result-container phasetwoResults">
+        <div className='physical-truma'>
+        <div className='right'>
+            <div className='right-truma'>
+              <h1>and...</h1>
+              <p>
+               {resultsToShowPhasetwo}
+              </p>
+            </div>
+          </div>
+          <div className='left'>
+            <div className='left-truma'>
+              <div className='physical-img'>
+                <img src={answerImg2} alt='' />
+              </div>
+              <div className='physical-para'>
+                <h1>
+                  You are a                  
+                   <br /> <span className='phy'> {phaseTwoResult}</span>
+                  <br /> processor
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
         <div className="know-more">
           <h1>Do you want to know more?</h1>
           <h3>Enter your details to get a full breakdown and find out what THREE ACTIONS you can take TODAY to start breaking your bond</h3>
         </div>
         
-        <div className='find-out-main'>
+        {/* <div className='find-out-main'>
           <div className='find-out'>
             <h1>Find out more! </h1>
             <p>
@@ -277,7 +325,7 @@ const Result = (props) => {
               <dir className='shadow-box'></dir>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
   )
 }

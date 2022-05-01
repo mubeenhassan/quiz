@@ -533,6 +533,16 @@ a {
 .know-more {
   width: 90%;
   margin: auto;
+  margin-bottom: 100px;
+}
+.phasetwoResults .left-truma {
+  width: 100%;
+}
+.phasetwoResults .physical-para {
+  position: unset;
+}
+.phasetwoResults .physical-img {
+  width: 325px;
 }
 @media screen and (max-width: 768px) {
   .physical-truma {
