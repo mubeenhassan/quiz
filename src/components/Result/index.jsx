@@ -67,6 +67,7 @@ const Result = (props) => {
     countPhaseOne()
     countPhaseTwo()
     }, [])
+
   const countPhaseOne = () => {
     if (
       (PH > EM && PH > EN) ||
@@ -221,7 +222,6 @@ console.log(finish)
     handleSubscribe()
   }
   const a_or_an = (phaseOneResult==='Emotional' || phaseOneResult==='Energetic'|| phaseOneResult==='Even') ? 'an':'a'
- 
   return (
       <div className='container'>
         <div className="result-container">
