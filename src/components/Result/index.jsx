@@ -47,7 +47,7 @@ let resultPhaseTwo= {
 }
 
 const Result = (props) => {
-  const {points} = props
+  const {points, isQuizFinished} = props
   const { PH, EM, EN, VI, AU, KI } = points
   let groupId=null
   const [finish, setFinish]=useState(false)
@@ -63,9 +63,10 @@ const Result = (props) => {
   // const [phaseTwoLink, setPhaseTwoLink] = useState('')
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    setFinish(true)
     countPhaseOne()
     countPhaseTwo()
-  }, [])
+    }, [])
   const countPhaseOne = () => {
     if (
       (PH > EM && PH > EN) ||
@@ -188,7 +189,8 @@ const Result = (props) => {
       return groupId =111082033
     }
   }
-
+ 
+console.log(finish)
   const handleSubscribe = (e) => {
     GroupId()
     // e.preventDefault()
@@ -208,18 +210,18 @@ const Result = (props) => {
     }
     axios
       .post(
-        'https://sheet.best/api/sheets/6d559efe-381d-4bea-9fc1-9eec9112ca31',
+        'https://sheet.best/api/sheets/c2d16891-8c57-463d-8fc0-493e27918e79',
         poinst_data
       )
       .then((response) => {
         // window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
       })
   }
-  
-  const a_or_an = (phaseOneResult==='Emotional' || phaseOneResult==='Energetic'|| phaseOneResult==='Even') ? 'an':'a'
-  if(!finish) {
+  if(finish) {
     handleSubscribe()
   }
+  const a_or_an = (phaseOneResult==='Emotional' || phaseOneResult==='Energetic'|| phaseOneResult==='Even') ? 'an':'a'
+ 
   return (
       <div className='container'>
         <div className="result-container">
