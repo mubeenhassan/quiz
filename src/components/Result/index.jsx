@@ -191,8 +191,7 @@ const Result = (props) => {
     }
   }
  
-console.log(finish)
-  const handleSubscribe = (e) => {
+  const handleResultSubmit = (e) => {
     GroupId()
     // e.preventDefault()
     const poinst_data = {
@@ -202,13 +201,12 @@ console.log(finish)
       Visual: VI,
       Auditory: AU,
       Kinaesthetic: KI,
-      Email: email,
-      FirstName:name,
       PhaseOneResult : phaseOneResult,
       PhaseTwoResult : phaseTwoResult,
       SendToMailerLiteGroup : phaseOneResult+"/"+phaseTwoResult,
       GroupID:groupId
     }
+    console.log(poinst_data)
     axios
       .post(
         'https://sheet.best/api/sheets/c2d16891-8c57-463d-8fc0-493e27918e79',
@@ -218,8 +216,27 @@ console.log(finish)
         // window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
       })
   }
+  const handleSubscribe = (e) => {
+    // e.preventDefault()
+    const subscribe_data = {
+      Email: email,
+      FirstName:name,
+    }
+    axios
+      .post(
+        'https://sheet.best/api/sheets/e67186d6-be8e-445a-b61c-3c5e61f1202b',
+        subscribe_data
+      )
+      .then((res)=>{
+        alert("subscribe")
+        setEmail("")
+        setName("")
+      })
+  }
   if(finish) {
-    handleSubscribe()
+    handleResultSubmit()
+    setFinish(false)
+
   }
   const a_or_an = (phaseOneResult==='Emotional' || phaseOneResult==='Energetic'|| phaseOneResult==='Even') ? 'an':'a'
   return (
@@ -303,7 +320,7 @@ console.log(finish)
           <h3>Enter your details to get a full breakdown and find out what THREE ACTIONS you can take TODAY to start breaking your bond</h3>
         </div>
         
-        {/* <div className='find-out-main'>
+         <div className='find-out-main'>
           <div className='find-out'>
             <h1>Find out more! </h1>
             <p>
@@ -327,7 +344,7 @@ console.log(finish)
               <dir className='shadow-box'></dir>
             </div>
           </div>
-        </div> */}
+        </div> 
       </div>
   )
 }
