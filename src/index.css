@@ -229,6 +229,7 @@ a {
 /* ................... answers sheet ------------------------- */
 .physical-truma {
   display: flex;
+  flex-direction: column;
   width: 90%;
   margin: auto;
   background: #e8c0aa;
@@ -237,13 +238,17 @@ a {
   border-radius: 24px;
   box-sizing: border-box;
 }
+.physical-truma>div {
+display: flex;
+align-items: center;
+}
 .physical-para {
   font-weight: 400;
   font-style: normal;
   color: rgb(255, 255, 255);
   font-size: 16px;
   position: absolute;
-  top: 74%;
+  top: 70%;
   text-align: center;
 }
 .phy {
@@ -260,9 +265,9 @@ a {
 .left {
   width: 50%;
   /* border: 2px solid blue; */
-  display: flex;
+  /* display: flex;
   justify-content: end;
-  align-items: center;
+  align-items: center; */
 }
 
 .left-truma {
@@ -285,6 +290,7 @@ a {
   color: rgb(255, 255, 255);
   text-shadow: rgb(0 0 0 / 33%) 0px 2.57872px 10.9596px;
   padding-bottom: 16px;
+  margin-top: 0;
 }
 .right-truma p {
   text-align: left;
@@ -565,6 +571,9 @@ a {
     justify-content: center;
     margin-top: 12%;
   }
+  .physical-truma>div {
+    flex-direction: column;
+  }
   .right-truma h1 {
     font-weight: 400;
     font-size: 5vh;
@@ -573,7 +582,7 @@ a {
     padding: 2vh 0vw;
   }
   .right-truma {
-    padding-right: 0%;
+    padding-left: 0%;
   }
   .right-truma p {
     padding: 8px 0px;
@@ -633,7 +642,7 @@ a {
     width: 73%;
   }
   .physical-para {
-    top: 73%;
+    top: 70%;
   }
 }
 
