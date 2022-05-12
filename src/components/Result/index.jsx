@@ -206,7 +206,6 @@ const Result = (props) => {
       SendToMailerLiteGroup : phaseOneResult+"/"+phaseTwoResult,
       GroupID:groupId
     }
-    console.log(poinst_data)
     axios
       .post(
         'https://sheet.best/api/sheets/c2d16891-8c57-463d-8fc0-493e27918e79',
@@ -217,10 +216,22 @@ const Result = (props) => {
       })
   }
   const handleSubscribe = (e) => {
+    GroupId()
+
     // e.preventDefault()
     const subscribe_data = {
+      Physical: PH,
+      Emotional: EM,
+      Energetic: EN,
+      Visual: VI,
+      Auditory: AU,
+      Kinaesthetic: KI,
       Email: email,
       FirstName:name,
+      PhaseOneResult : phaseOneResult,
+      PhaseTwoResult : phaseTwoResult,
+      SendToMailerLiteGroup : phaseOneResult+"/"+phaseTwoResult,
+      GroupID:groupId
     }
     axios
       .post(
@@ -228,9 +239,7 @@ const Result = (props) => {
         subscribe_data
       )
       .then((res)=>{
-        alert("subscribe")
-        setEmail("")
-        setName("")
+        window.location.reload()
       })
   }
   if(finish) {
