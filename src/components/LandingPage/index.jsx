@@ -40,6 +40,7 @@ const LandingPage = (props) => {
   return (
     <div className="landingpage">
       <div className="heading-container">
+      <TateTestButton arrow={blackArrow} className="first-btn" {...props} />
         <div className="take-test-head">
         <h1>
           "It's so incredible to finally understand what is happening to me

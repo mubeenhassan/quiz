@@ -60,7 +60,7 @@ function Home(props) {
 
     let disabledQuestions = []
     if (currentPage <= TOTAL_PAGES) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
       let quizData = [...QUIZ]
       let start = QUESTIONS_PER_PAGE * currentPage
       let end = QUESTIONS_PER_PAGE * (currentPage + 1) - 1
