@@ -8,6 +8,7 @@ body {
   font-family: "Arimo", sans-serif;
   background-color: #e8c0aa;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 a {
   text-decoration: none;
@@ -247,9 +248,8 @@ align-items: center;
   font-style: normal;
   color: rgb(255, 255, 255);
   font-size: 16px;
-  position: absolute;
-  top: 70%;
   text-align: center;
+  margin-top: -100px;
 }
 .phy {
   font-size: 50px;
@@ -493,10 +493,12 @@ align-items: center;
 }
 .landingpage .heading-container {
   position: relative;
+  margin-top: 40px;
 }
 .landingpage .heading-container h1 {
   font-size: 44px;
   line-height: 1.5;
+  margin-top: 16px;
 }
 .first-btn button {
   background: #f7e7d7;
@@ -588,15 +590,7 @@ align-items: center;
     padding: 8px 0px;
   }
 
-  .physical-para {
-    font-weight: 400;
-    font-style: normal;
-    color: rgb(255, 255, 255);
-    font-size: 16px;
-    position: absolute;
-    top: 140%;
-    text-align: center;
-  }
+
   .find-out p {
     font-size: 20px;
   }
@@ -641,9 +635,7 @@ align-items: center;
   .physical-img img {
     width: 73%;
   }
-  .physical-para {
-    top: 70%;
-  }
+ 
 }
 
 @media screen and (max-width: 480px) {

@@ -207,14 +207,14 @@ const Result = (props) => {
       SendToMailerLiteGroup: phaseOneResult + "/" + phaseTwoResult,
       GroupID: groupId,
     }
-    axios
-      .post(
-        'https://sheet.best/api/sheets/c2d16891-8c57-463d-8fc0-493e27918e79',
-        poinst_data
-      )
-      .then((response) => {
-        // window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
-      })
+    // axios
+    //   .post(
+    //     'https://sheet.best/api/sheets/c2d16891-8c57-463d-8fc0-493e27918e79',
+    //     poinst_data
+    //   )
+    //   .then((response) => {
+    //     // window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
+    //   })
   }
   const handleSubscribe = (e) => {
     GroupId()
