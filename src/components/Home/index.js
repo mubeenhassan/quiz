@@ -59,8 +59,12 @@ function Home(props) {
     // 0-7, 8-15, 16-23, 24-31, 32-30, 40-47
 
     let disabledQuestions = []
-    if (currentPage <= TOTAL_PAGES) {
+    if(currentPage===0) {
       window.scrollTo(0, 0);
+    }else{
+      window.scrollTo(0, window.screen.width<=768 ? 1000 : 400);
+    }
+    if (currentPage <= TOTAL_PAGES) {
       let quizData = [...QUIZ]
       let start = QUESTIONS_PER_PAGE * currentPage
       let end = QUESTIONS_PER_PAGE * (currentPage + 1) - 1
@@ -74,6 +78,8 @@ function Home(props) {
         if (i === 0) disabledQuestions.push(false)
         else disabledQuestions.push(true)
       }
+      // window.scrollTo(0, 300);
+
       setDisabledQuizes(disabledQuestions)
     }
   }
