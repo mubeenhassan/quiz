@@ -63,11 +63,10 @@ const Result = (props) => {
   const [phaseTwoResult, setPhaseTwoResult] = useState("")
   const [answerImg, setAnswerImg] = useState("")
   const [answerImg2, setAnswerImg2] = useState("")
-  // const [phaseOneLink, setPhaseOneLink] = useState('')
-  // const [phaseTwoLink, setPhaseTwoLink] = useState('')
+  const [phaseOneLink, setPhaseOneLink] = useState('')
+  const [phaseTwoLink, setPhaseTwoLink] = useState('')
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" })
-    setFinish(true)
     countPhaseOne()
     countPhaseTwo()
   }, [])
@@ -80,7 +79,7 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.physical)
       setPhaseOneResult("Physical")
-      // setPhaseOneLink('ph')
+      setPhaseOneLink('ph')
       setAnswerImg("https://media-public.canva.com/4nIMI/MADmds4nIMI/2/s.svg")
     } else if (
       (EM > PH && EM > EN) ||
@@ -89,7 +88,7 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.emotional)
       setPhaseOneResult("Emotional")
-      // setPhaseOneLink('em')
+      setPhaseOneLink('em')
       setAnswerImg("https://media-public.canva.com/In1uw/MADmdmIn1uw/2/s.svg")
     } else if (
       (EN > PH && EN > EM) ||
@@ -98,12 +97,12 @@ const Result = (props) => {
     ) {
       setResultsToShow(results.energetic)
       setPhaseOneResult("Energetic")
-      // setPhaseOneLink('en')
+      setPhaseOneLink('en')
       setAnswerImg("https://media-public.canva.com/xyqpY/MADmdoxyqpY/2/s.svg")
     } else if (PH === EM && EM === EN) {
       setResultsToShow(results.even)
       setPhaseOneResult("Even")
-      // setPhaseOneLink('ev')
+      setPhaseOneLink('ev')
       setAnswerImg("https://media-public.canva.com/is-Sk/MADmdgis-Sk/2/s.svg")
     }
   }
@@ -117,7 +116,7 @@ const Result = (props) => {
       setResultsToShowPhaseTwo(resultPhaseTwo.visual)
       setPhaseTwoResult("Visual")
       setAnswerImg2(processorVisual)
-      // setPhaseTwoLink('vi')
+      setPhaseTwoLink('vi')
     } else if (
       (AU > KI && AU > VI) ||
       (AU === KI && AU > VI) ||
@@ -126,7 +125,7 @@ const Result = (props) => {
       setResultsToShowPhaseTwo(resultPhaseTwo.auditory)
       setPhaseTwoResult("Auditory")
       setAnswerImg2(processorAuditory)
-      // setPhaseTwoLink('au')
+      setPhaseTwoLink('au')
     } else if (
       (KI > VI && KI > AU) ||
       (KI === VI && KI > AU) ||
@@ -135,11 +134,11 @@ const Result = (props) => {
       setResultsToShowPhaseTwo(resultPhaseTwo.kinaesthetic)
       setPhaseTwoResult("Kinaesthetic")
       setAnswerImg2(processorKin)
-      // setPhaseTwoLink('ki')
+      setPhaseTwoLink('ki')
     } else if (VI === AU && VI === KI) {
       setResultsToShowPhaseTwo(resultPhaseTwo.evens)
       setPhaseTwoResult("Evens")
-      // setPhaseTwoLink('evs')
+      setPhaseTwoLink('evs')
       setAnswerImg2(processorEven)
     }
   }
@@ -192,30 +191,6 @@ const Result = (props) => {
     }
   }
 
-  const handleResultSubmit = (e) => {
-    GroupId()
-    // e.preventDefault()
-    const poinst_data = {
-      Physical: PH,
-      Emotional: EM,
-      Energetic: EN,
-      Visual: VI,
-      Auditory: AU,
-      Kinaesthetic: KI,
-      PhaseOneResult: phaseOneResult,
-      PhaseTwoResult: phaseTwoResult,
-      SendToMailerLiteGroup: phaseOneResult + "/" + phaseTwoResult,
-      GroupID: groupId,
-    }
-    axios
-      .post(
-        'https://sheet.best/api/sheets/c2d16891-8c57-463d-8fc0-493e27918e79',
-        poinst_data
-      )
-      .then((response) => {
-        // window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
-      })
-  }
   const handleSubscribe = (e) => {
     GroupId()
 
@@ -239,13 +214,9 @@ const Result = (props) => {
         "https://sheet.best/api/sheets/e67186d6-be8e-445a-b61c-3c5e61f1202b",
         subscribe_data
       )
-      .then((res) => {
-        window.location.reload()
+      .then((response) => {
+        window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
       })
-  }
-  if (finish) {
-    handleResultSubmit()
-    setFinish(false)
   }
   const a_or_an =
     phaseOneResult === "Emotional" ||
