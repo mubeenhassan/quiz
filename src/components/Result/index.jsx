@@ -54,7 +54,7 @@ const Result = (props) => {
   const { points } = props
   const { PH, EM, EN, VI, AU, KI } = points
   let groupId = null
-  const [finish, setFinish] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")
   const [resultsToShow, setResultsToShow] = useState({})
@@ -191,7 +191,29 @@ const Result = (props) => {
     }
   }
 
+  function validateEmail(emailAdress) {
+    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    if (emailAdress.match(regexEmail)) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+
   const handleSubscribe = (e) => {
+    if(name.length <= 0 ){
+      alert("Please Enter Name")
+      return;
+
+    }else if(email.length <= 0){
+      alert("Please Enter Email")
+      return;
+    }else if(!validateEmail(email)){
+      alert("Please Enter Valid Email")
+      return;
+    }
+    setLoading(true)
     GroupId()
 
     // e.preventDefault()
@@ -215,6 +237,7 @@ const Result = (props) => {
         subscribe_data
       )
       .then((response) => {
+        setLoading(false)
         window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
       })
   }
@@ -327,7 +350,8 @@ const Result = (props) => {
             required={true}
           />
           <div>
-            <button onClick={handleSubscribe}>Go to your 3 steps </button>
+            <button onClick={handleSubscribe}>
+              { loading ? 'Loading ...' : 'Go To Your 3 Steps'} </button>
             <dir className="shadow-box"></dir>
           </div>
         </div>
