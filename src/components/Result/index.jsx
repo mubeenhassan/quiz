@@ -238,7 +238,8 @@ const Result = (props) => {
       )
       .then((response) => {
         setLoading(false)
-        window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
+        // window.location.replace(`https://www.youreasylifecoach.com/your-results-${phaseOneLink}-${phaseTwoLink}`);
+        window.location.replace('https://www.youreasylifecoach.com/breakyourbondonline');
       })
   }
   const a_or_an =
@@ -297,6 +298,9 @@ const Result = (props) => {
             </div>
           </div>
         </div>
+        
+        {/* 
+        Full result hidded 
         <div>
           <div className="right">
             <div className="right-truma">
@@ -318,14 +322,13 @@ const Result = (props) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         </div>
       </div>
       <div className="know-more">
         <h1>Do you want to know more?</h1>
         <h3>
-          Enter your details to get a full breakdown and find out what THREE
-          ACTIONS you can take TODAY to start breaking your bond
+        To receive your full results (including your subconscious processing style) and find out the next step to break your trauma bond enter your details below
         </h3>
       </div>
 
